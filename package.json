@@ -1,7 +1,14 @@
 {
   "name": "persik-tv-app",
   "version": "2.1.8",
-  "main" : "main.js",
+  "main": "main.js",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "http": false,
+    "https": false
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
@@ -36,6 +43,8 @@
     "angular-epic-spinners": "^2.0.0",
     "angularx-qrcode": "^12.0.3",
     "core-js": "^2.5.4",
+    "electron-is-dev": "^2.0.0",
+    "electron-window-state": "^5.0.3",
     "hls.js": "0.7.11",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
