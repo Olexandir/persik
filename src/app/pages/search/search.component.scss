@@ -1,0 +1,76 @@
+@import '../../../colors.scss';
+
+.search {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  color: white;
+  margin-top: 4rem;
+  flex-direction: column;
+  align-items: flex-start;
+  // margin-bottom: 3rem;
+  box-sizing: border-box;
+  padding: 0 95px;
+
+  .keyboard {
+    width: 50%;
+  }
+
+  .notfound {
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  &__input {
+    width: 100%;
+    // border: 1px solid $text-muted;
+    height: 4.5rem;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    margin-bottom: 5.3rem;
+    outline: none;
+    transition: .4s;
+    white-space: nowrap;
+    background-color: #232323;
+    box-shadow: 0 0 1rem 0 black;
+
+    &:focus {
+      box-shadow: 0 0 1.2rem 0 rgba(0, 0, 0, .7);
+      border: 1px solid $main-hover;
+    }
+  }
+
+  &__error {
+    color: red;
+    font-size: .8rem;
+    font-style: italic;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    width: 60%;
+  }
+}
+
+.fastlink {
+  width: 60%;
+  display: flex;
+
+  &__btn {
+    padding: .4rem .8rem;
+    background: $middle-gray;
+    margin-bottom: 2rem;
+    outline: none;
+
+    &:focus {
+      background-color: $main-hover;
+    }
+  }
+
+}

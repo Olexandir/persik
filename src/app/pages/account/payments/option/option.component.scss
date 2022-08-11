@@ -1,0 +1,24 @@
+@import '../../../../../colors.scss';
+
+.option {
+  width: 60rem;
+  background-color: $middle-gray;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  color: white;
+  outline: none;
+  border: 1px solid transparent;
+  margin-bottom: 1rem;
+
+  &:focus {
+    background: $main-hover;
+    color: white !important;
+  }
+
+  &_selected {
+    color: $main-hover;
+    border: 1px solid $main-hover;
+  }
+}

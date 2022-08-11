@@ -1,0 +1,27 @@
+<div class="page" nav-container>
+
+  <app-header></app-header>
+
+  <div nav-group class="first-tape">
+    <app-channels-tape title="Популярные каналы" [channels]="channels$ | async" stub="true"></app-channels-tape>
+  </div>
+
+  <ng-container *ngIf="(filmIds$ | async) as filmIds">
+    <div nav-group *ngIf="filmIds.length > 0">
+      <app-video-tape title="Фильмы" [tape]="filmIds" redirectPath="films" type="video" isLast="true"></app-video-tape>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="(serieIds$ | async) as serieIds">
+    <div nav-group *ngIf="serieIds.length > 0">
+      <app-video-tape title="Сериалы" [tape]="serieIds" redirectPath="series" type="video" isLast="true"></app-video-tape>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="(cartoonIds$ | async) as cartoonIds">
+    <div nav-group *ngIf="cartoonIds.length > 0">
+      <app-video-tape title="Мультфильмы" [tape]="cartoonIds" redirectPath="cartoons" type="video" isLast="true"></app-video-tape>
+    </div>
+  </ng-container>
+
+</div>

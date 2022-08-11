@@ -1,0 +1,23 @@
+<div class="payments">
+
+  <div class="products">
+    <span class="payments__title">Выберите пакет</span>
+    <div class="products__row" *ngFor="let row of productMatrix" nav-group>
+      <app-product *ngFor="let item of row" (selectEvent)="onProductSelect($event)" [product]="item"></app-product>
+    </div>
+  </div>
+
+  <span class="payments__title" *ngIf="isHaveOptions">Выберите опцию</span>
+
+  <div class="products" *ngFor="let option of options" nav-group>
+    <app-option [option]="option" (selectEvent)="onOptionSelect($event)"></app-option>
+  </div>
+
+  <span class="payments__title" *ngIf="isOptionSelected">Выберите способ оплаты</span>
+  <div class="payways" *ngIf="isOptionSelected" nav-group>
+    <app-payment *ngFor="let payment of payments" [paymentName]="payment" (selectEvent)="doPayment($event)"></app-payment>
+  </div>
+
+  <app-order-modal *ngIf="isHavePaymentInfo" [content]="paymentInfo" (closeEvent)="onModalClose()"></app-order-modal>
+
+</div>

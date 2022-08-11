@@ -1,0 +1,22 @@
+<div class="seasons">
+
+  <div nav-group>
+    <div class="seasons__item" nav-item item-horizontal (click)="toggleChapters()" (keyEnterEvent)="toggleChapters()">
+      {{ book.title }}
+      <div class="circle" [class.circle_open]="isOpened"></div>
+    </div>
+
+    <div class="seasons__series" [class.seasons__series_opened]="isOpened">
+      <div *ngFor="let chapter of chapters">
+        <div nav-group class="serie">
+          <div class="serie__item" nav-item item-horizontal (click)="playChapter(chapter)"
+            (keyEnterEvent)="playChapter(chapter)">
+            <img src="assets/play-solid.svg" alt="">
+            {{ chapter.filename }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

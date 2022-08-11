@@ -1,0 +1,124 @@
+@import '../../../colors.scss';
+
+.video-card {
+  background-color: $light-gray;
+  position: relative;
+  box-shadow: 0 0 .94rem 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.87rem;
+  color: #fff;
+  cursor: pointer;
+  width: 22%;
+  margin-right: 2%;
+  display: inline-block;
+  padding-bottom: 1.25rem;
+
+  &_fiveinrow {
+    width: 18%;
+  }
+
+  &:focus {
+    background-color: $main-hover;
+    outline: none;
+    box-shadow: none;
+
+    .video-card__name{
+      color: #fff;
+    }
+
+    .video-card__genre{
+      color: #fff;
+    }
+  }
+
+  .show-all {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_lats {
+    &:hover {
+      background-color: $main-hover;
+    }
+  }
+
+  &__img {
+    position: relative;
+    margin-bottom: 1.31rem;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-bgr {
+      width: 90%;
+      height: 8rem;
+      background-color: $middle-gray;
+      z-index: 1;
+      position: relative;
+    }
+
+    &_stub {
+      opacity: 0;
+    }
+
+    &:after{
+      display: block;
+      content: '';
+      padding-bottom: 136.430769%;
+    }
+
+    &_small{
+      &::after {
+        content: '';
+        padding-bottom: 56.61% !important;
+      }
+    }
+  }
+
+  &__name{
+    font-size: calc(.5rem + .82vw);
+    margin-bottom: calc(3px + .3vw);
+    text-align: center;
+    padding: 0 .94rem;
+    white-space: nowrap;
+		overflow: hidden;
+    text-overflow: ellipsis;
+
+    &_last {
+      opacity: 0;
+    }
+
+    &_stub {
+      width: 85%;
+      height: 1rem;
+      background-color: $middle-gray;
+    }
+  }
+  &__genre{
+    color: $main-hover;
+    font-size: calc(.5rem + .42vw);
+    padding: 0 .94rem;
+    text-align: center;
+    white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+    transition: .3s;
+
+    &_last {
+      opacity: 0;
+    }
+
+    &_stub {
+      width: 75%;
+      height: 1rem;
+      background-color: $middle-gray;
+    }
+  }
+}

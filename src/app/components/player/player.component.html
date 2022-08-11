@@ -1,0 +1,11 @@
+<div #player class="player player_fullscreen" [style.width]="screenWidth" [style.height]="screenHeight">
+
+  <video #video class="player-video" [poster]="contentPoster" [style.width]="screenWidth" [style.height]="screenHeight"></video>
+
+  <div class="poster" *ngIf="isPlayerHaveError">
+    <img class="poster__logo" [src]="logo" alt="">
+  </div>
+
+</div>
+
+<!-- <app-adult *ngIf="isShowAdultModal" (modalEvent)="checkPinIsValid($event)"></app-adult> -->

@@ -1,0 +1,10 @@
+<div class="error" *ngIf="isShowError" nav-container>
+  <span class="error__title">{{ errorMessage }}</span>
+  <div *ngIf="isShowButton" nav-group>
+      <div class="error__button" nav-item item-horizontal (keyEnterEvent)="goToAuth()" *ngIf="isAuthNeeded" (click)="goToAuth()">Авторизоваться</div>
+      <div class="error__button" nav-item item-horizontal (keyEnterEvent)="goToPayments()" *ngIf="!isAuthNeeded" (click)="goToPayments()">Приобрести подписку</div>
+  </div>
+
+</div>
+
+

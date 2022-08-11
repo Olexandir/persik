@@ -1,0 +1,20 @@
+<div class="tape">
+  <div class="tape__title">{{ title }}</div>
+  <ng-container *ngIf="channels.length > 0; else stubTape">
+    <div class="tape__items" horizontalTape>
+      <app-channel-card
+        behavior="first"
+        [channel]="channel"
+        [currentTime]="currentTime"
+        *ngFor="let channel of channels"
+      ></app-channel-card>
+      <app-channel-card [isLast]="stub" *ngIf="stub" (showAllEvent)="onShowAll()"></app-channel-card>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #stubTape>
+  <div class="tape__items" horizontalTape>
+    <app-channel-card [isStub]="true" *ngFor="let i of [0, 1, 2, 3]"></app-channel-card>
+  </div>
+</ng-template>

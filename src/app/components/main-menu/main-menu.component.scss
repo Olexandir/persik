@@ -1,0 +1,146 @@
+@import '../../../colors.scss';
+
+.main-menu {
+  background: #000;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 16.6rem;
+  // padding-top: 2rem;
+  transform: translateX(-12rem);
+  transition: .2s ease-out;
+  z-index: 11;
+  overflow: hidden;
+
+  &__item {
+    width: 100%;
+    color: white;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap;
+    height: 8.3%;
+    max-height: 120px;
+    border-bottom: 1px solid #323232;
+    opacity: .7;
+
+    &-full{
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+
+      &__name{
+        display: block;
+        opacity: 0;
+      }
+
+    }
+
+    &-short{
+      width: 25%;
+      justify-content: center;
+      padding-left: 0 !important;
+      transform: translateX(12rem);
+    }
+
+    &-full, &-short{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      transition: .2s ease-out;
+
+      &__icon{
+        width: 3.4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+          width: 1.2rem;
+        }
+      }
+    }
+
+    &-img{
+      position: absolute;
+      opacity: 0.4;
+      transition: .3s;
+      top: 2.8rem;
+      right: .625rem;
+      width: 1.5rem;
+      margin-right: .94rem;
+    }
+
+
+    &_active {
+      opacity: 1;
+      .main-menu__item-img{
+        opacity: 1;
+        transition: .3s;
+      }
+
+      &:after{
+        content: "";
+        background-color: #67b437;
+        box-shadow: 0 0 1rem #67b437;
+        position: absolute;
+        right: 0;
+        // top: 0;
+        // height: 2.5rem;
+        top: 25%;
+        height: 50%;
+        width: .125rem;
+      }
+    }
+
+    &:focus {
+      background-color: $main-hover !important;
+      outline: none;
+      opacity: 1;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+}
+
+.opened {
+  transform: translateX(0);
+  transition: .2s;
+
+  .main-menu__item {
+    border-bottom: 1px solid transparent;
+  }
+
+  .main-menu__item-img{
+    opacity: 1;
+    position: relative;
+    top: 0;
+  }
+
+
+  .main-menu__item-short{
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  .main-menu__item-full{
+    opacity: 1;
+
+    &__name{
+      opacity: 1;
+    }
+  }
+}
+

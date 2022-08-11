@@ -1,0 +1,39 @@
+@import '../../../colors.scss';
+
+.channel-tape {
+  width: 14rem;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: .4s;
+  transform: translateX(0);
+
+  &_hide {
+    transform: translateX(-100%);
+  }
+}
+
+.progress {
+  position: absolute;
+  bottom: 0;
+  left: 14rem;
+  width: calc(100% - 14rem);
+  height: 8rem;
+  transition: .4s;
+  transform: translateY(0);
+
+  &_hide {
+    transform: translateY(100%);
+  }
+}
+
+.channel-selector {
+  font-size: 2rem;
+  color: $main-hover;
+  text-shadow: 0 0 5px black;
+  position: fixed;
+  right: 2rem;
+  top: 2rem;
+}
+

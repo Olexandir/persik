@@ -1,0 +1,28 @@
+<div class="controller">
+  <div class="ctrl-info" [class.ctrl-info_hide]="!isShowControls">
+    <div class="name">{{ videoInfo.name }}</div>
+    <div class="casts">
+      {{ videoInfo.casts | castsPipe }}
+    </div>
+  </div>
+
+
+  <div class="ctrl-progress" [class.ctrl-progress_hide]="!isShowControls">
+    <div class="thumbnails" *ngIf="isSeekingEnabled">
+      <div class="thumbnails__tracker" style.backgroundImage="url({{ thumbnailTrackerImage }})" [style.left.rem]="thumbnailPosition">
+        <div class="seektime">{{ seekTime | timePipe }}</div>
+      </div>
+
+      <img class="thumbnails__img" *ngFor="let image of thumbnails" [src]="image" alt="">
+    </div>
+    <div class="progress" (click)="seekByCursor($event)">
+      <div class="progress__line" [style.width.%]="progress"></div>
+      <div class="progress__seeker" *ngIf="isSeekingEnabled" [style.left.%]="seekPosition"></div>
+    </div>
+
+    <div class="time-info">
+      <span class="time-info__start">{{ currentTime | timePipe }}</span> <span class="time-info__duration">{{ duration | timePipe }}</span>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,106 @@
+<div class="main-menu" nav-group>
+  <div
+    class="main-menu__item"
+    nav-item
+    item-vertical
+    (blur)="onMenuItemsBlur()"
+    (focus)="onMenuItemFocus(item)"
+    *ngFor="let item of menuItems"
+    (keyEnterEvent)="onEnterKey(item)"
+    [routerLink]="[item.redirect]"
+    routerLinkActive="main-menu__item_active"
+  >
+    <div class="main-menu__item-short">
+      <div class="main-menu__item-short__icon">
+        <img [src]="item.icon" alt="" />
+      </div>
+    </div>
+    <div class="main-menu__item-full">
+      <div class="main-menu__item-full__icon">
+        <img [src]="item.icon" alt="" />
+      </div>
+      <span class="main-menu__item-full__name">
+        {{ item.name }}
+      </span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="isLogin && !isCertificateMode"
+    class="main-menu__item"
+    nav-item
+    item-vertical
+    (keyEnterEvent)="onEnterKey(favoriteItem)"
+    [routerLink]="[favoriteItem.redirect]"
+    routerLinkActive="main-menu__item_active"
+  >
+    <div class="main-menu__item-short">
+      <div class="main-menu__item-short__icon">
+        <img [src]="favoriteItem.icon" alt="" />
+      </div>
+    </div>
+    <div class="main-menu__item-full">
+      <div class="main-menu__item-full__icon">
+        <img [src]="favoriteItem.icon" alt="" />
+      </div>
+      <span class="main-menu__item-full__name">
+        {{ favoriteItem.name }}
+      </span>
+    </div>
+  </div>
+
+  <div
+    *ngIf="!isLogin"
+    class="main-menu__item"
+    nav-item
+    item-vertical
+    (keyEnterEvent)="onEnterKey(authItem)"
+    [routerLink]="[authItem.redirect]"
+    routerLinkActive="main-menu__item_active"
+  >
+    <div class="main-menu__item-short">
+      <div class="main-menu__item-short__icon">
+        <img [src]="authItem.icon" alt="" />
+      </div>
+    </div>
+    <div class="main-menu__item-full">
+      <div class="main-menu__item-full__icon">
+        <img [src]="authItem.icon" alt="" />
+      </div>
+      <span class="main-menu__item-full__name">
+        {{ authItem.name }}
+      </span>
+    </div>
+  </div>
+  <div
+    *ngIf="isLogin"
+    class="main-menu__item"
+    nav-item
+    item-vertical
+    (keyEnterEvent)="onEnterKey(accountItem)"
+    [routerLink]="[accountItem.redirect]"
+    routerLinkActive="main-menu__item_active"
+  >
+    <div class="main-menu__item-short">
+      <div class="main-menu__item-short__icon">
+        <img [src]="accountItem.icon" alt="" />
+      </div>
+    </div>
+    <div class="main-menu__item-full">
+      <div class="main-menu__item-full__icon">
+        <img [src]="accountItem.icon" alt="" />
+      </div>
+      <span class="main-menu__item-full__name">
+        {{ accountItem.name }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<app-genre-filter
+  nav-container
+  *ngIf="isShowGenreMenu && (genres$ | async) as items"
+  (blurEvent)="onMenuItemsBlur()"
+  (genreChange)="onGenreChange($event)"
+  [genres]="items"
+></app-genre-filter>

@@ -1,0 +1,23 @@
+.tape {
+  width: 100%;
+  position: relative;
+
+  &__title {
+    text-transform: uppercase;
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1.38rem;
+    margin-left: 95px;
+  }
+
+  &__items {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 95px;
+
+    &::-webkit-scrollbar { width: 0; }
+  }
+}

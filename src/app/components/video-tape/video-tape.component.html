@@ -1,0 +1,16 @@
+<div class="tape">
+  <div class="tape__title">{{ title }}</div>
+
+  <div class="tape__items" horizontalTape>
+    <ng-container *ngIf="tape && tape.length > 0 then dataTape else stubTape"></ng-container>
+  </div>
+</div>
+
+<ng-template #dataTape>
+  <app-video-card [countInRow]="countInRow" [type]="type" [id]="video" *ngFor="let video of tape"></app-video-card>
+  <app-video-card [countInRow]="countInRow" [type]="type" [isLast]="isLast" *ngIf="isLast" (showAllEvent)="onShowAll()"></app-video-card>
+</ng-template>
+
+<ng-template #stubTape>
+  <app-video-card [countInRow]="countInRow" isStub="true" *ngFor="let item of [0, 1, 2, 3, 4]"></app-video-card>
+</ng-template>

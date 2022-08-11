@@ -1,0 +1,116 @@
+@import '../../../colors.scss';
+
+.genre-filter {
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 0;
+  left: 2.6rem;
+  height: 100vh;
+  width: 23rem;
+  transform: translateX(-23rem);
+  transition-property: transform;
+  transition-duration: 200ms;
+  z-index: 10;
+  transition-timing-function: ease-out;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: $shadow-dark;
+  cursor: pointer;
+  padding: 5.3rem 0;
+
+  &::-webkit-scrollbar { width: 0; }
+
+  &__item {
+    position: relative;
+    white-space: nowrap;
+    height: 3.75rem;
+    padding: 0 .5rem 0 1rem;
+    opacity: 0;
+    border-right: .19rem solid transparent;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-name {
+      width: 80%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
+      text-align: center;
+      font-size: 1.3rem;
+    }
+
+    &-count {
+      float: right;
+      padding: 0 .5rem;
+      background-color: #232323;
+      color: #cccccc;
+      height: 1.5rem;
+      line-height: 1.6rem;
+      font-size: 0.875rem;
+      margin: .5rem 0;
+      border-radius: .5rem;
+      box-sizing: border-box;
+      opacity: 1;
+      transition-property: opacity;
+      transition-delay: .3s;
+      transition-duration: 300ms;
+      transition-timing-function: ease-out;
+    }
+
+    &:focus{
+      outline: none;
+      background-color: $main-hover;
+      color: white;
+      font-family: 'OpenSans-Bold', sans-serif;
+
+      .genre-filter__item-count {
+        background-color: #b44c19;
+        color: #ffffff;
+      }
+    }
+
+    &_selected {
+      border-right: .19rem solid $main-green;
+    }
+  }
+
+}
+
+.opened {
+  transform: translateX(2rem);
+  transition: .2s;
+
+  .genre-filter__item {
+    opacity: 1;
+  }
+}
+
+.active-genre {
+  transition-property: transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+  text-transform: capitalize;
+  color: $main-hover;
+  transform: rotate(-90deg);
+  width: 10rem;
+  height: 16%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 5rem;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.opened + .active-genre {
+  opacity: 0;
+  transform: rotate(0);
+}

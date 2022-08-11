@@ -1,0 +1,4 @@
+<div class="channel" #item [class.channel_active]="isActive" [class.channel_focus]="isFocus" (click)="selectChannel()">
+  <div class="channel__number">{{ index + 1 }}</div>
+  <div class="channel__logo" style.backgroundImage="url({{ channel.logo }})"></div>
+</div>

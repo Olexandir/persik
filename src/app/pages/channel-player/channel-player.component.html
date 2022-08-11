@@ -1,0 +1,19 @@
+<div class="page page_fullscreen" (click)="autoHideControls()">
+  <div class="channel-selector" *ngIf="isHaveChannelNumber">
+    {{ channelSelectorField }}
+  </div>
+
+  <app-error-message></app-error-message>
+
+  <div *ngIf="!isDestroyControls" class="channel-tape" [class.channel-tape_hide]="isHideControls">
+    <app-channel-tape [channels]="channels$ | async" (changeChannel)="channelChange($event)"></app-channel-tape>
+  </div>
+
+  <div class="progress" *ngIf="!isDestroyControls" [class.progress_hide]="isHideControls">
+    <ng-container *ngIf="currentTvshow$ | async as currentTvshow">
+      <app-onair-line [currentTime]="currentTime" [tvshow]="currentTvshow"></app-onair-line>
+    </ng-container>
+  </div>
+</div>
+
+<app-adult *ngIf="isShowCheckPin"></app-adult>

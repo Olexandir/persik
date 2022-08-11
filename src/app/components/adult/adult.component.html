@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="adult">
+    <div class="adult__text">
+      Введите пин код
+    </div>
+    <div class="adult__input"  type="text">
+      {{ code }}
+    </div>
+    <span *ngIf="isWrongPin" class="adult__error">Неверный пин</span>
+    <div nav-container class="numbers">
+      <div nav-group class="numbers__row" *ngFor="let row of numberMatrix">
+        <div (keyEnterEvent)="clickButton(item)" (click)="clickButton(item)" [class.numbers__row-item_ok]="item === 'ОК'" *ngFor="let item of row" nav-item item-horizontal class="numbers__row-item">{{ item }}</div>
+      </div>
+    </div>
+  </div>
+</div>

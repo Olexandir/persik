@@ -1,0 +1,91 @@
+@import '../../../../colors.scss';
+
+.subscriptions {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  border: none;
+
+  &__row {
+    outline: none;
+    border-left: none;
+
+    &:focus {
+      background-color: black;
+    }
+
+    &_header {
+      text-transform: uppercase;
+      height: 3.38rem;
+      color: $text-muted;
+      
+      .table__row-col {
+        border-top: none;
+      }
+    }
+
+    &-col {
+      border: 1px solid #393939;
+      box-sizing: border-box;
+      height: 4.58rem;
+      padding: 0 1.5rem;
+      text-align: center;
+      vertical-align: center;
+      border-left: none;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &_date {
+        width: 10.88rem;
+      }
+
+      &_tariff {
+        font-size: 1.1rem;
+        font-weight: bold;
+        width: 27.38rem;
+        padding: 1.5rem 1rem;
+        box-sizing: border-box;
+      }
+
+      &_cost {
+        white-space: nowrap;
+        width: 12.54rem;
+
+        .cur {
+          color: $text-muted;
+        }
+      }
+
+      &_expired {
+        width: 13.06rem;
+        color: $main-hover;
+      }
+
+      &_option {
+        color: $text-muted;
+        font-size: .9rem;
+        font-weight: normal;
+      }
+
+
+    }
+  }
+}

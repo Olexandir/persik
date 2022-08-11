@@ -1,0 +1,9 @@
+<div class="wrapper">
+  <div class="exit-modal">
+    <div class="exit-modal__title">В прошлый раз вы закончили просмотр на: {{ lastTime | timePipe }}</div>
+    <div class="buttons">
+      <div tabindex="0" (click)="resumePlay()" ok-button #ok_button class="buttons__item">Продолжить просмотр</div>
+      <div tabindex="0" (click)="startPlay()"  #cancel_button class="buttons__item">Начать сначала</div>
+    </div>
+  </div>
+</div>

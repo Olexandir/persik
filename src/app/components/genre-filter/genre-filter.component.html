@@ -1,0 +1,6 @@
+<div class="genre-filter" nav-group>
+  <div class="genre-filter__item" [class.genre-filter__item_selected]="isGenreActive(item)" nav-item item-vertical
+    (keyEnterEvent)="selectGenre(item)" (blur)="onBlur()" (click)="selectGenre(item)" *ngFor="let item of genres">
+    <div class="genre-filter__item-name">{{ item?.name }}</div>
+  </div>
+</div>

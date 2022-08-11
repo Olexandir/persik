@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <div class="modal">
+    <span class="modal__descr" *ngIf="isHaveDescription" [innerHTML]="content.description"></span>
+
+    <div class="no-descr" *ngIf="!isHaveDescription && isHavePaymentUrl">
+      Для оплаты тарифа перейдите на сайт persik.by, <br> либо отсканируйте QR код
+
+      <div class="qr">
+        <qrcode [qrdata]="content.payment_page_url" size="300" level="M"></qrcode>
+      </div>
+
+    </div>
+
+    <div class="no-descr" *ngIf="!isHaveDescription && !isHavePaymentUrl">
+      Для оплаты тарифа перейдите на сайт persik.by, <br> либо отсканируйте QR код
+
+      <div class="qr">
+        <qrcode qrdata="https://persik.by" size="300" level="M"></qrcode>
+      </div>
+
+    </div>
+
+    <div class="modal__close" tabindex="0" (click)="closeModal()">
+      Закрыть
+    </div>
+  </div>
+</div>
+=

@@ -1,0 +1,23 @@
+<div class="seasons">
+
+  <div nav-group *ngFor="let item of seasons">
+    <div class="seasons__item" nav-item item-horizontal (click)="loadSeriesBySeason(item)"
+      (keyEnterEvent)="loadSeriesBySeason(item)">
+      {{ item }}
+      <div class="circle" [class.circle_open]="isActiveSeason(item)"></div>
+    </div>
+
+    <div class="seasons__series" *ngIf="isActiveSeason(item)">
+      <div *ngFor="let serie of seriesVideoInformation$ | async">
+        <div *ngIf="serie" nav-group class="serie">
+          <div class="serie__item" nav-item item-horizontal (click)="playVideo(serie)"
+            (keyEnterEvent)="playVideo(serie)">
+            <img src="assets/play-solid.svg" alt="">
+            {{ serie.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,122 @@
+.header-logo {
+    width: 10rem;
+    margin: 0 auto;
+    display: block;
+    margin-top: 4rem;
+}
+
+.auth{
+    padding: 0 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    flex-direction: column;
+
+    &__title{
+        font-weight: bold;
+        font-size: 2rem;
+        margin-bottom: 2.2rem;
+        text-align: center;
+        color: #fff;
+        padding-top: 3rem;
+        width: 100%;
+        text-transform: uppercase;
+    }
+
+    &__form{
+        position: relative;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 5rem;
+        background-color: #232323;
+        z-index: 5;
+        opacity: 1;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+        padding: 0 2.1rem;
+        font-size: 1.8rem;
+        color: #fff;
+        margin-bottom: 2.2rem;
+
+        &-step{
+            font-weight: bold;
+        }
+
+        &-input{
+            position: relative;
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            padding-left: 1.8rem;
+            width: 80%;
+            height: 100%;
+
+            &:focus{
+                color: #fff;
+            }
+        }
+
+        &-value{
+            outline: none !important;
+            box-shadow: none !important;
+            border: none !important;
+            width: 100%;
+            background: transparent !important;
+            // pointer-events: none !important;
+            // user-select:  !important;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: flex-start;
+            padding-left: 2rem;
+            z-index: 10;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        &-error{
+            position: absolute;
+            left: 0;
+            bottom: -30px;
+            font-size: 1rem;
+            color: #e05f20;
+            font-weight: normal;
+        }
+
+    }
+
+    &__submit{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+        height: 70px;
+        margin-top: 40px;
+        margin-right: 10px;
+        cursor: pointer;
+        padding: 2rem 4rem;
+        color: #fff;
+        font-weight: bold;
+        border: solid 1px #393939;
+        background-color: transparent;
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    &__info {
+      margin-top: 20px;
+      color: white;
+      text-align: center;
+    }
+}
+

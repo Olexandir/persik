@@ -1,0 +1,35 @@
+<div class="subscriptions">
+  <table class="table" nav-group>
+
+    <tr class="table__row table__row_header">
+      <td class="table__row-col">
+        Дата
+      </td>
+      <td class="table__row-col">
+        Услуга
+      </td>
+      <td class="table__row-col">
+        Сумма
+      </td>
+      <td class="table__row-col">
+        Осталось
+      </td>
+    </tr>
+
+    <tr class="table__row" *ngFor="let item of subscriptions" nav-item item-vertical>
+      <td class="table__row-col table__row-col_date">
+        {{ item.created_at | simpleDate }}
+      </td>
+      <td class="table__row-col table__row-col_tariff">
+        {{ item.product_name }}<br>
+        <span class="table__row-col_option">{{ item.product_option_name }} (с{{ item.created_at | simpleDate }} по {{ item.expired_at | simpleDate }})</span>
+      </td>
+      <td class="table__row-col table__row-col_cost">
+        {{ item.cost }} <span class="cur"> бел. руб.</span>
+      </td>
+      <td class="table__row-col table__row-col_expired">
+        {{ item.expired_at | expiredPipe }}
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,67 @@
+@import '../../../../../colors.scss';
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, .3);
+
+  .modal {
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: black;
+    font-size: 1.2rem;
+    max-width: 40%;
+    border-top: 5px solid $main-hover;
+
+    &__descr {
+      white-space: pre-line;
+    }
+
+    &__close {
+      text-transform: uppercase;
+      width: 14rem;
+      height: 3rem;
+      border: 1px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      margin-top: 2rem;
+      outline: none;
+
+      &:focus {
+        border: 1px solid transparent;
+        background: $main-hover;
+      }
+    }
+  }
+}
+
+.no-descr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.qr {
+  background-color: white;
+  width: 320px;
+  height: 320px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 2rem;
+}

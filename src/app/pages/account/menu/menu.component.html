@@ -1,0 +1,9 @@
+<div class="menu" nav-group>
+  <div class="menu__item"
+    nav-item item-vertical
+    (keyEnterEvent)="goTo(item.path)"
+    *ngFor="let item of menuItems"
+    [routerLink]="item.path"
+    routerLinkActive="menu__item_active"
+    >{{ item.name }}</div>
+</div>

@@ -1,0 +1,9 @@
+@import '../../../colors.scss';
+
+.account {
+  display: flex;
+  height: 100vh;
+  margin-left: 4.5rem;
+  overflow: hidden;
+  background: $light-gray;
+}

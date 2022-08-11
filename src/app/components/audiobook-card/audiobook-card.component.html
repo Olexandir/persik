@@ -1,0 +1,18 @@
+<div *ngIf="!isStub" class="audio-card" nav-item item-horizontal (keyEnterEvent)="openDescription()" (click)="openDescription()">
+  <div class="audio-card__img" style.backgroundImage="url({{ cover }})" [attr.alt]="book.title">
+  </div>
+  <div class="audio-card__name">
+    {{ book.title }}
+  </div>
+</div>
+
+<div class="audio-card" nav-item item-horizontal (keyEnterEvent)="showAll()" (click)="showAll()" *ngIf="isStub">
+  <div class="audio-card__img audio-card__img_stub" style.backgroundImage="https://old.persik.by/utils/show-frame.php?c=10&t={{currentTime}}&tr=crop&w=205&h=127" alt="">
+  </div>
+
+  <span class="show-all">Показать все</span>
+
+  <div class="audio-card__name audio-card__name_stub">
+    Текст
+  </div>
+</div>

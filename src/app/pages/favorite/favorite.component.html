@@ -1,0 +1,39 @@
+<div class="page" nav-container>
+  <div class="first-tape" nav-group *ngIf="(favoriteChannels$ | async)?.length > 0">
+    <app-channels-tape title="Избранные каналы" [channels]="favoriteChannels$ | async"></app-channels-tape>
+  </div>
+
+  <div nav-group *ngIf="(favoriteVideoIds$ | async)?.length > 0">
+    <app-video-tape title="Избранные фильмы" type="video" [tape]="favoriteVideoIds$ | async"></app-video-tape>
+  </div>
+
+  <div nav-group *ngIf="(favoriteTvshowIds$ | async)?.length > 0">
+    <app-video-tape title="Избранное. Архив ТВ" type="tvshow" [tape]="favoriteTvshowIds$ | async"></app-video-tape>
+  </div>
+
+  <div nav-group *ngIf="(boughtBooks$ | async)?.length > 0">
+    <app-bought-book-tape [books]="boughtBooks$ | async"></app-bought-book-tape>
+  </div>
+
+  <div nav-group *ngIf="(favoriteBookIds$ | async)?.length > 0">
+    <app-audiobook-tape title="Избранные книги" [favoriteBooks]="favoriteBookIds$ | async"></app-audiobook-tape>
+  </div>
+
+  <div
+    class="no-content"
+    nav-group
+    *ngIf="
+      !((boughtBooks$ | async)?.length > 0) &&
+      !((favoriteBookIds$ | async)?.length > 0) &&
+      !((favoriteChannels$ | async)?.length > 0) &&
+      !((favoriteVideoIds$ | async)?.length > 0) &&
+      !((favoriteTvshowIds$ | async)?.length > 0)
+    "
+  >
+    В Избранном ничего нет
+
+    <div class="button" nav-item item-horizontal (keyEnterEvent)="backToMain()" (click)="backToMain()">
+      Вернуться на главную
+    </div>
+  </div>
+</div>

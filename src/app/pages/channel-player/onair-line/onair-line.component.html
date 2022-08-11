@@ -1,0 +1,15 @@
+<div class="info">
+
+  <div class="info__name">
+    {{ tvshow.title }}
+  </div>
+
+  <div class="info__time">
+    <span class="info__time-start">{{ tvshow.start | timePipe }}</span>
+    <span class="info__time-end">{{ tvshow.stop | timePipe }}</span>
+  </div>
+
+  <div class="progress">
+    <div class="progress__line" [style.width.%]="progress"></div>
+  </div>
+</div>

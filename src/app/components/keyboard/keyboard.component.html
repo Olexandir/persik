@@ -1,0 +1,30 @@
+<div class="keyboard">
+  <div nav-container>
+      <div class="keyboard__row" *ngFor="let row of keyboardLayout; let i= index" nav-group>
+          <div
+            nav-item
+            item-horizontal
+            class="keyboard__row-item"
+            *ngFor="let item of row; let j= index"
+            (keyEnterEvent)="onEnterPress(item)"
+            (topBorderEvent)="onTopPosition()"
+            [id]="item && item.action ? item.action : i+ '' + j"
+            (click)="onEnterPress(item)"
+            [style.width.rem]="getSize(item)"
+            [class.space]="item.size === 13"
+            >
+            <div class="keyboard__row-item__text">
+              {{ item.symbol }}
+            </div>
+          </div>
+        </div>
+  </div>
+
+  <div class="keyboard__section" nav-container>
+    <div class="keyboard__section-group" nav-group>
+        <div class="keyboard__section-group-item" (keyEnterEvent)="onOKEvent()" (click)="onOKEvent()" nav-item item-horizontal>OK</div>
+    </div>
+
+  </div>
+
+</div>

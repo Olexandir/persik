@@ -1,0 +1,50 @@
+
+@import '../../../../colors.scss';
+
+.info {
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+
+  &__time {
+    width: 100%;
+    text-shadow: 0 0 4px black;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 0 2.5rem;
+
+    &-start {
+      float: left;
+    }
+
+    &-end {
+      float: right;
+    }
+  }
+
+  &__name {
+    font-weight: bold;
+    width: 100%;
+    padding-left: 2.5rem;
+    font-size: 1.3rem;
+  }
+}
+
+.progress {
+  width: 90%;
+  height: .5rem;
+  border-radius: .25rem;
+  overflow: hidden;
+  border: 1px solid white;
+  box-shadow: 0 0 4px 0 black;
+
+  &__line {
+    height: 100%;
+    background-color: $main-hover;
+    width: 0;
+  }
+}

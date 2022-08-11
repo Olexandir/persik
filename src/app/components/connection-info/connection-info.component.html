@@ -1,0 +1,4 @@
+<div class="info" [class.info_show]="isShowInfo" [class.info_error]="!isOnline">
+  <span *ngIf="isOnline" >Интернет соединение восстановлено</span>
+  <span *ngIf="!isOnline" >Интернет соединение отсутствует</span>
+</div>

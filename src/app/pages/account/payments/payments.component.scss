@@ -1,0 +1,47 @@
+.payments {
+  width: 65rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 2rem 1rem 2rem 1rem;
+  overflow-y: auto;
+
+  &__title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.3rem;
+    color: white;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+}
+
+.products {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+}
+
+.payways {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

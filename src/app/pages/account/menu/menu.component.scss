@@ -1,0 +1,30 @@
+@import '../../../../colors.scss';
+
+.menu {
+  width: 12rem;
+  background-color: $middle-gray;
+  text-align: center;
+  color: $color-text-simple;
+  height: 100vh;
+  box-shadow: $shadow-dark;
+  position: relative;
+  box-sizing: border-box;
+  padding: 1rem 0;
+
+  &__item {
+    height: 3rem;
+    line-height: 3rem;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+
+    &:focus {
+      color: white;
+      background-color: $main-hover;
+    }
+
+    &_active {
+      color: $main-hover;
+    }
+  }
+}

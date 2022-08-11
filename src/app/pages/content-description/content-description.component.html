@@ -1,0 +1,96 @@
+<div class="page" nav-container>
+  <div class="banner" style.backgroundImage="url({{ video.cover }})" nav-group>
+    <div class="banner__darkness">
+      <div class="main-info">
+        <div class="main-info__genres">{{ genres | genresPipe }}</div>
+        <div class="main-info__name" [innerHTML]="contentName"></div>
+
+        <div class="main-info__casts" *ngIf="(casts$ | async) && isAudiobook"><strong>Авторы: </strong>{{ casts |
+          castsPipe }}</div>
+        <div class="buttons">
+          <div class="buttons__item buttons__item_play" *ngIf="isAudiobook && !(isBought$ | async)" nav-item
+            item-horizontal (click)="playTrial()" (focus)="scrollToTop()" (keyEnterEvent)="playTrial()">Слушать фрагмент
+          </div>
+          <div class="buttons__item buttons__item_play" *ngIf="isAudiobook && (isBought$ | async)" nav-item
+            item-horizontal (click)="playFull()" (focus)="scrollToTop()" (keyEnterEvent)="playFull()">Слушать</div>
+          <div class="buttons__item buttons__item_play" *ngIf="!isAudiobook && isAuth" nav-item item-horizontal
+            (click)="playVideo()" (focus)="scrollToTop()" (keyEnterEvent)="playVideo()">Смотреть</div>
+          <div class="buttons__item buttons__item_play" nav-item item-horizontal *ngIf="!isAuth"
+            (click)="authorization()" (focus)="scrollToTop()" (keyEnterEvent)="authorization()">Авторизоваться</div>
+
+          <div class="buttons__item" nav-item item-horizontal *ngIf="isAuth" (click)="toggleFavorite()"
+            (focus)="scrollToTop()" (keyEnterEvent)="toggleFavorite()">{{ favoriteText }}
+          </div>
+
+          <div class="buttons__item" *ngIf="isAudiobook && !(isBought$ | async)" nav-item item-horizontal
+            (click)="buyBook()" (focus)="scrollToTop()" (keyEnterEvent)="buyBook()">Купить за {{ bookInfo.price_byn
+            }}руб.</div>
+          <!-- <div class="nobuttons" nav-item item-horizontal *ngIf="isAuth && !isCanPlay">Для просмотра необходимо приобрести подписку на сайте persik.by</div> -->
+        </div>
+
+      </div>
+    </div>
+    <div class="banner__image" [class.banner__image_book]="isAudiobook" style.backgroundImage="url({{ video.cover }})">
+    </div>
+  </div>
+
+  <div class="info" nav-group>
+    <div class="info__block" [class.info__block_book]="isAudiobook" nav-item item-horizontal>
+      <div class="description" *ngIf="video.description">
+        <div class="description__header">Описание</div>
+        <p [innerHTML]="video.description"></p>
+      </div>
+
+      <div class="ratings" *ngIf="!isAudiobook">
+        <div class="ratings__item" *ngIf="video.countries">
+          Страна <strong>{{ video.countries | genresPipe }}</strong>
+        </div>
+        <div *ngIf="video.year" class="ratings__item">
+          Год <strong>{{ video.year }}</strong>
+        </div>
+        <div *ngIf="video.ratings.imdb" class="ratings__item">
+          IMDb <strong>{{ video.ratings.imdb.value }}</strong>
+        </div>
+        <div *ngIf="video.ratings.kinopoisk" class="ratings__item">
+          Кинопоиск <strong>{{ video.ratings.kinopoisk.value }}</strong>
+        </div>
+        <div class="ratings__item" *ngIf="channel">
+          Канал <strong>{{ channel.name }}</strong>
+        </div>
+        <div class="ratings__item" *ngIf="tvshow">
+          Эфир <strong class="ratings__item-air">{{ tvshow.start | startTimePipe }}</strong>
+        </div>
+      </div>
+
+      <div class="ratings" *ngIf="isAudiobook">
+        <div *ngIf="video.year" class="ratings__item">
+          Год <strong>{{ video?.year }}</strong>
+        </div>
+
+        <div class="ratings__item">
+          Издательство <strong>{{ bookInfo.contract_title }}</strong>
+        </div>
+
+        <div class="ratings__item">
+          Длительность <strong>{{ video?.duration | durationTime }}</strong>
+        </div>
+
+        <div class="ratings__item">
+          Правообладатель <strong>Литрес</strong>
+        </div>
+
+        <!-- <div *ngIf="video.year" class="ratings__item">
+          Авторы <strong>{{ casts | castsPipe }}</strong>
+        </div>
+
+        <div *ngIf="video.year" class="ratings__item">
+          Жанр <strong>{{ genres }}</strong>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <app-series [video]="video" (playEvent)="playVideo($event)" *ngIf="isSeries && !isAudiobook"></app-series>
+
+  <app-chapters *ngIf="isAudiobook && isSeries && (isBought$ | async)" [book]="bookInfo"></app-chapters>
+</div>

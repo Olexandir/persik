@@ -1,0 +1,10 @@
+<div class="tape">
+  <app-channel-tape-item
+    *ngFor="let item of channels; let i = index; trackBy: trackByChannelId"
+    (channelChange)="onChannelChange($event)"
+    [channel]="item"
+    [index]="i"
+    [focusChannelIndex1]="focusChannelIndex"
+    [activeChannelId1]="activeChannelId"
+  ></app-channel-tape-item>
+</div>

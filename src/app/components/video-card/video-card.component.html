@@ -1,0 +1,44 @@
+<div *ngIf="video$ | async as video" class="video-card" nav-item item-horizontal (click)="openDescription(video)"
+  (keyEnterEvent)="openDescription(video)">
+  <!--  [class.video-card_fiveinrow]="isFiveInRow" -->
+  <ng-container *ngIf="!isLast && !isStub">
+    <div class="video-card__img" [class.video-card__img_small]="!isVideoThumbnail"
+      style.backgroundImage="url({{ video.cover }})" [attr.alt]="video.name"></div>
+
+    <div class="video-card__name">
+      {{ video.name }}
+    </div>
+  </ng-container>
+
+  <div class="video-card__genre">
+    {{ videoGenres | genresPipe }}
+  </div>
+
+</div>
+
+<div class="video-card video-card_last" nav-item item-horizontal="first" (click)="showAll()" (keyEnterEvent)="showAll()"
+  *ngIf="isLast && !isStub">
+  <!--  [class.video-card_fiveinrow]="isFiveInRow" -->
+  <span class="show-all">Смотреть все</span>
+  <div class="video-card__img video-card__img_last" [class.video-card__img_small]="!isVideoThumbnail"
+    style.backgroundImage="https://old.persik.by/utils/show-frame.php?c=10&t=1552286203&tr=crop&w=205&h=127">
+  </div>
+  <div class="video-card__name video-card__name_last">
+    text
+  </div>
+  <div class="video-card__genre video-card__genre_last">
+    text
+  </div>
+</div>
+
+<div class="video-card video-card_stub" [class.video-card_fiveinrow]="isFiveInRow" *ngIf="isStub">
+  <span class="show-all"></span>
+  <div class="video-card__img" [class.video-card__img_small]="!isVideoThumbnail"
+    style.backgroundImage="https://old.persik.by/utils/show-frame.php?c=10&t=1552286203&tr=crop&w=205&h=127">
+    <div class="video-card__img-bgr"></div>
+  </div>
+  <div class="video-card__name video-card__name_stub">
+  </div>
+  <div class="video-card__genre video-card__genre_stub">
+  </div>
+</div>

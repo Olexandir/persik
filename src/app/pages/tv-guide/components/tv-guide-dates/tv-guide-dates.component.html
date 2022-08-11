@@ -1,0 +1,5 @@
+<div class="dates" nav-group *ngIf="isHaveDates">
+  <div class="dates__item" [class.active]="isActiveDate(date)" (keyEnterEvent)="changeDate(date)" (click)="changeDate(date)" nav-item item-vertical *ngFor="let date of dates" [innerHTML]="date | datePipe | boldPipe"></div>
+</div>
+
+<div class="dates" *ngIf="!isHaveDates"></div>

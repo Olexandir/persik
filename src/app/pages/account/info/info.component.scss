@@ -1,0 +1,48 @@
+@import '../../../../colors.scss';
+
+.header-logo {
+  width: 10rem;
+  margin-top: 4rem;
+}
+
+.info {
+  width: 55rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 3rem;
+  text-align: center;
+  font-size: 1.6rem;
+
+  &__name{
+    margin-bottom: 20px;
+  }
+}
+
+.button {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  text-align: center;
+
+  &__logout {
+    border: 1px solid white;
+    padding: 1.6rem 2.2rem;
+    display: inline-block;
+    color: #fff;
+    margin: 0 auto;
+
+    &:focus {
+      background-color: $main-hover;
+      outline: none;
+      border-color: $main-hover;
+    }
+  }
+}

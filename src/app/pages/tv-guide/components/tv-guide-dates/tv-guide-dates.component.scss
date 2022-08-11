@@ -1,0 +1,37 @@
+@import '../../../../../colors.scss';
+
+.dates {
+  width: 15rem;
+  height: 100vh;
+  background-color: $middle-gray;
+  text-align: left;
+  text-transform: uppercase;
+  position: relative;
+  box-shadow: $shadow-dark;
+  color: white;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 1;
+
+  &__item {
+    height: 3.5rem;
+    line-height: 3.5rem;
+    padding-left: 1.5rem;
+    box-sizing: border-box;
+    outline: none;
+    font-size: .8rem;
+
+    &:focus {
+      background-color: $main-hover;
+      color: white !important;
+    }
+  }
+
+  .active {
+    color: $main-hover;
+    font-weight: bold;
+  }
+}
+
+.dates::-webkit-scrollbar { width: 0 !important }

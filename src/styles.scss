@@ -1,0 +1,64 @@
+@import './colors.scss';
+@import './assets/fonts/fonts.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1b1b1b;
+  font-family: 'OpenSans-Regular', sans-serif;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+*{
+  box-sizing: border-box;
+}
+
+
+.page {
+  margin-left: 3.29rem;
+  height: 100vh;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  position: relative;
+  background: #1b1b1b;
+
+  &::-webkit-scrollbar { width: 0; }
+
+  &_fullscreen {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+    margin-left: 0;
+  }
+
+  &_withfilter {
+    padding-left: 4rem;
+  }
+
+  &_tvguide {
+    padding-left: 1.1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+}
+
+
+.cdk-virtual-scroll-content-wrapper{
+  right: 0;
+  padding: 0 15px;
+  margin-top: 30px;
+}
+
+[nav-group] {
+  outline: none;
+}
+
+.orange-text {
+  color: $main-hover;
+}

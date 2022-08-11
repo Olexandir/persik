@@ -1,0 +1,15 @@
+<div class="info">
+  <img src="assets/logo.png" alt="" class="header-logo" />
+
+  <div class="user-info" *ngIf="userInfo$ | async as userInfo">
+    <span class="user-info__name">{{ userInfo.name }}</span
+    ><br />
+    <span class="user-info__email">{{ userInfo.email }}</span>
+  </div>
+
+  <div nav-group class="button">
+    <div nav-item item-horizontal (keyEnterEvent)="logOut()" (click)="logOut()" class="button__logout">
+      Выйти из аккаунта
+    </div>
+  </div>
+</div>

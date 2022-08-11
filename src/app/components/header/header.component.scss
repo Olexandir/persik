@@ -1,0 +1,20 @@
+@import '../../../assets/fonts/fonts.css';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    box-sizing: border-box;
+    padding: 0 95px;
+    height: 45px;
+    margin-top: 40px;
+    color: white;
+    padding-bottom: 6px;
+    font-family: 'OpenSans-Bold', sans-serif;
+    font-size: 1rem;
+
+    .header__logo {
+        margin: 30px auto 0 auto;
+        width: 195px;
+    }
+}

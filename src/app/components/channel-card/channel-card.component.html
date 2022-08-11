@@ -1,0 +1,54 @@
+<div
+  *ngIf="!isLast && !isStub"
+  class="channel-card"
+  nav-item
+  item-horizontal
+  (keyEnterEvent)="playChannel()"
+  (click)="playChannel()"
+>
+  <div class="logo">
+    <img class="logo__img" [src]="channel?.logo" alt="" />
+  </div>
+
+  <div class="channel-card__img" style.backgroundImage="url({{ cover }})" [attr.alt]="channel?.name">
+    <div class="channel-card__progress" [style.width.%]="tvshow$ | async | progressPipe: currentTime"></div>
+    <div class="channel-card__play">
+      <img src="assets/play-icon.svg" alt="" />
+    </div>
+  </div>
+  <div class="channel-card__name">
+    {{ channel?.name }}
+  </div>
+  <div class="channel-card__genre">
+    {{ (tvshow$ | async)?.title | titlePipe }}
+  </div>
+</div>
+
+<div
+  class="channel-card channel-card_stub"
+  nav-item
+  item-horizontal="first"
+  (keyEnterEvent)="showAll()"
+  (click)="showAll()"
+  *ngIf="isLast"
+>
+  <span class="show-all">Смотреть все</span>
+  <div
+    class="channel-card__img channel-card__img_stub"
+    style.backgroundImage="https://old.persik.by/utils/show-frame.php?c=10&t={{ currentTime }}&tr=crop&w=205&h=127"
+  ></div>
+  <div class="channel-card__name channel-card__name_last">text</div>
+  <div class="channel-card__genre channel-card__genre_last">text</div>
+</div>
+
+<div class="channel-card channel-card_stub" *ngIf="isStub">
+  <span class="show-all"></span>
+  <div
+    class="channel-card__img"
+    style.backgroundImage="https://old.persik.by/utils/show-frame.php?c=10&t={{ currentTime }}&tr=crop&w=205&h=127"
+  >
+    <div class="channel-card__img-bgr"></div>
+  </div>
+  <div class="channel-card__name channel-card__name_stub"></div>
+  <div class="channel-card__genre channel-card__genre_stub"></div>
+</div>

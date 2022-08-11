@@ -1,0 +1,15 @@
+<div (click)="autoHideControls()" class="page page_fullscreen">
+
+  <app-video-controller
+    [isShowControls]="isShowControls"
+    [currentTime]="trackTime"
+    [duration]="duration"
+    [seekTime]="seekPosition"
+    [videoInfo]="videoInfo"
+    (seekMouseEvent)="seekByCursor($event)"
+  ></app-video-controller>
+
+  <app-error-message [isCourse]="isCourse"></app-error-message>
+
+  <app-last-time-modal (resumeEvent)="onResume($event)" *ngIf="isHaveInMemory" [lastTime]="lastTime"></app-last-time-modal>
+</div>

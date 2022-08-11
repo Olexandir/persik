@@ -1,0 +1,174 @@
+@import '../../../colors.scss';
+
+.channel-card {
+  background-color: #232323;
+  position: relative;
+  box-shadow: 0 0 .94rem 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.87rem;
+  color: #fff;
+  cursor: pointer;
+  width: 22%;
+  margin-right: 2%;
+  display: inline-block;
+  padding-bottom: 1.25rem;
+
+  .logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__img {
+      width: 4rem;
+    }
+  }
+
+  &:focus {
+    background-color: $main-hover;
+    outline: none;
+    box-shadow: none;
+
+    .channel-card__name{
+      color: #fff;
+    }
+
+    .channel-card__genre{
+      color: #fff;
+    }
+
+    .channel-card__progress{
+      background-color: #fff;
+    }
+
+    .channel-card__play {
+      opacity: 1;
+    }
+  }
+
+  .show-all {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_stub {
+    &:hover {
+      background-color: $main-hover;
+    }
+  }
+
+  &__img{
+    position: relative;
+    margin-bottom: 1.31rem;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-bgr {
+      width: 90%;
+      height: 10rem;
+      background-color: $middle-gray;
+      z-index: 1;
+      position: relative;
+    }
+
+    &_stub {
+      opacity: 0;
+    }
+
+    &:after{
+      content: '';
+      display: block;
+      padding-bottom: 56.615384%;
+    }
+
+    &-img{
+      width: 100%;
+      display: inline-block;
+      vertical-align: top;
+      min-height: 100px;
+    }
+  }
+
+  &__progress{
+    position: absolute;
+    left: 0;
+    bottom: -.25rem;
+    height: .25rem;
+    background-color: $main-hover;
+    transition: .3s;
+  }
+  &__play{
+    position: absolute;
+    width: 50px;
+    left: 50%;
+    top: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    opacity: 0;
+    img{
+      width: 100%;
+    }
+  }
+  &__logo{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 5px;
+    background-color: rgba(0,0,0, 1);
+    &-img{
+      max-width: 60px;
+      opacity: .8;
+    }
+  }
+  &__name{
+    font-size: calc(.5rem + .92vw);
+    margin-bottom: calc(3px + .3vw);
+    text-align: center;
+    padding: 0 .94rem;
+    white-space: nowrap;
+		overflow: hidden;
+    text-overflow: ellipsis;
+
+    &_last {
+      opacity: 0;
+    }
+
+    &_stub {
+      width: 75%;
+      height: 1rem;
+      background-color: $middle-gray;
+    }
+  }
+  &__genre{
+    color: $main-hover;
+    font-size: calc(.5rem + .62vw);
+    padding: 0 .94rem;
+    text-align: center;
+    white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+    transition: .3s;
+
+    &_last {
+      opacity: 0;
+    }
+
+    &_stub {
+      width: 85%;
+      height: 1rem;
+      background-color: $middle-gray;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<div class="tape">
+  <div class="tape__title" *ngIf="isHaveTitle">{{ title }}</div>
+
+  <div class="tape__items" horizontalTape *ngIf="isHaveIds">
+    <app-audiobook-card [book]="item" *ngFor="let item of books | async"></app-audiobook-card>
+  </div>
+</div>

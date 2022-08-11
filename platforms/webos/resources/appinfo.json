@@ -1,0 +1,16 @@
+{
+    "id": "by.persik.lg",
+    "version": "2.1.10",
+    "iconColor": "#222222",
+    "vendor": "Персональные интерактивные коммуникации",
+    "type": "web",
+    "main": "index.html",
+    "title": "TV BY Persik",
+    "icon": "80.png",
+    "largeIcon": "130.png",
+    "splashBackground": "1920.png",
+    "bgImage": "bgimage.png",
+    "resolution": "1920x1080",
+    "appDescription": "\"Persik\" — это цифровое интерактивное телевидение. Только популярные телеканалы, большая библиотека фильмов, архив передач, единая подписка для всех устройств.",
+    "disableBackHistoryAPI": true
+}
