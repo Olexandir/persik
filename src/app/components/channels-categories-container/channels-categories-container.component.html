@@ -1,0 +1,10 @@
+<div class="channels-categories-container">
+  <div class="channels-categories" [ngClass]="{ opened: isContainerOpened }">
+    <div class="channels-categories__category" *ngFor="let category of channelsCategories$ | async">
+      {{ category.name }}
+    </div>
+  </div>
+  <div class="toggle-button" (click)="toggleContainer()">
+    <span [ngClass]="{ opened: isContainerOpened }"></span>
+  </div>
+</div>
