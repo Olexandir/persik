@@ -1,6 +1,14 @@
 {
   "name": "persik-tv-app",
   "version": "2.1.8",
+  "main": "main.js",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "http": false,
+    "https": false
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
@@ -15,7 +23,8 @@
     "samsung-cleandir": "rm -rf ./platforms/tizen/dist",
     "build-android": "npm run build && rm -rf ./platforms/android/www/* && cp -r ./dist/* ./platforms/android/www && cd ./platforms/android && cordova build android",
     "android-sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore platforms/android/persik.keystore platforms/android/platforms/android/app/build/outputs/apk/release/app-release.apk persik",
-    "android-sign-final": "zipalign -v 4 platforms/android/platforms/android/app/build/outputs/apk/release/app-release.apk platforms/android/platforms/android/app/build/outputs/apk/release/by.persik.androidtv.apk"
+    "android-sign-final": "zipalign -v 4 platforms/android/platforms/android/app/build/outputs/apk/release/app-release.apk platforms/android/platforms/android/app/build/outputs/apk/release/by.persik.androidtv.apk",
+    "electron": "ng build && electron ."
   },
   "private": true,
   "dependencies": {
@@ -34,6 +43,8 @@
     "angular-epic-spinners": "^2.0.0",
     "angularx-qrcode": "^12.0.3",
     "core-js": "^2.5.4",
+    "electron-is-dev": "^2.0.0",
+    "electron-window-state": "^5.0.3",
     "hls.js": "0.7.11",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
@@ -53,6 +64,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "electron": "^20.0.2",
     "fs-extra": "^8.1.0",
     "fs-extra-promise": "^1.0.1",
     "grunt-cache-bust": "^1.7.0",
