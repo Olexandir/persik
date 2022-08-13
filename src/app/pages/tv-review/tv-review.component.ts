@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { BackService } from './../../services/back.service';
 import { TimeService } from '@services/core';
@@ -18,6 +18,7 @@ import { DEFAULT_COUNT, STEP } from './constants/channels-pagination';
 })
 export class TvReviewPageComponent implements OnInit, OnDestroy {
   public genres: Genre[] = [];
+  public chosenCategory = 0;
 
   private currentCount = DEFAULT_COUNT;
   public currentTime: number;
@@ -46,6 +47,11 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
     this.channelsByRows$ = this.getChannels();
 
     this.currentTime = this.timeService.currentTime;
+  }
+
+  public filterChannelsByCategory(categoryId: number) {
+    this.chosenCategory = categoryId
+    if (categoryId === 0) return;
   }
 
   public loadMoreChannels(): void {

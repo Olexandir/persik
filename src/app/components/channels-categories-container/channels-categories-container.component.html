@@ -1,6 +1,11 @@
 <div class="channels-categories-container">
   <div class="channels-categories" [ngClass]="{ opened: isContainerOpened }">
-    <div class="channels-categories__category" *ngFor="let category of channelsCategories$ | async">
+    <div
+      class="channels-categories__category"
+      [ngClass]="{ 'chosen': category.id === chosenCategory }"
+      *ngFor="let category of channelsCategories$ | async"
+      (click)="chooseCategory(category.id)"
+    >
       {{ category.name }}
     </div>
   </div>

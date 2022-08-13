@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -11,8 +11,12 @@ import { ChannelsFacade } from 'src/redux/channels/channels.facade';
   styleUrls: ['channels-categories-container.component.scss']
 })
 export class ChannelsCategoriesContainerComponent implements OnInit {
-  public channelsCategories$: Observable<Genre[]>;
+  @Input()
+  public chosenCategory: number;
+  @Output()
+  public chosenCategoryChange = new EventEmitter<number>();
 
+  public channelsCategories$: Observable<Genre[]>;
   public isContainerOpened: boolean;
 
   constructor(private channelsFacade: ChannelsFacade) {}
@@ -23,7 +27,9 @@ export class ChannelsCategoriesContainerComponent implements OnInit {
 
   public toggleContainer(): void {
     this.isContainerOpened = !this.isContainerOpened;
-    console.log(this.isContainerOpened);
-    
+  }
+
+  public chooseCategory(categoryId: number): void {
+    this.chosenCategoryChange.emit(categoryId);
   }
 }

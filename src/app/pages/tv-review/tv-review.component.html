@@ -1,5 +1,5 @@
 <div class="page page_withfilter" nav-container>
-  <app-channels-categories-container></app-channels-categories-container>
+  <app-channels-categories-container [chosenCategory]="chosenCategory" (chosenCategoryChange)="filterChannelsByCategory($event)"></app-channels-categories-container>
   <div
     class="channel-viewport"
     *ngIf="isShowPreloadArea"
@@ -11,7 +11,7 @@
   >
     <div *ngFor="let row of channelsByRows$ | async; trackBy: trackByRowIds" class="row" nav-group>
       <app-channel-card
-        *ngFor="let item of row; trackBy: trackByChannelId"
+        *ngFor="let item of row | filterChannelsByCategory: chosenCategory ; trackBy: trackByChannelId"
         [currentTime]="currentTime"
         [channel]="item"
         class="item"

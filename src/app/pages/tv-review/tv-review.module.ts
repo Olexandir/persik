@@ -7,11 +7,10 @@ import { ChannelCardModule } from '../../components/channel-card/channel-card.mo
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ChannelsCategoriesContainerModule } from 'src/app/components/channels-categories-container/channels-categories-container.module';
+import { FilterChannelsByCategoryPipe } from './filter-channels-by-category.pipe';
 
 @NgModule({
-  declarations: [
-    TvReviewPageComponent
-  ],
+  declarations: [TvReviewPageComponent, FilterChannelsByCategoryPipe],
   imports: [
     CommonModule,
     NavModule,
@@ -27,5 +26,4 @@ import { ChannelsCategoriesContainerModule } from 'src/app/components/channels-c
     ])
   ]
 })
-
 export class TvReviewPageModule {}

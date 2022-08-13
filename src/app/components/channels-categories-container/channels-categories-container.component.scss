@@ -24,14 +24,15 @@
       padding: 2px 6px;
       cursor: pointer;
     }
+
+    &__category.chosen {
+      background: #e05f20;
+    }
   }
 
   .channels-categories.opened {
     height: fit-content;
   }
-
-  // &__category.chosen {
-  // }
 
   .toggle-button {
     width: 60px;
