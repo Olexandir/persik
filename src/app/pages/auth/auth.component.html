@@ -7,57 +7,61 @@
     </div>
 
     <div class="auth__form" *ngIf="step === 'authEmail'">
-      <div class="auth__form-step">
-        Шаг 1/2
-      </div>
+      <div class="auth__form-step">Шаг 1/2</div>
       <div class="auth__form-input">
-        <div class="auth__form-value">{{ field | placeholderPipe:'email' }}</div>
+        <input
+          class="auth__form-value"
+          placeholder="{{ field | placeholderPipe: 'email' }}"
+          value="{{ field }}"
+          (keydown)="keyboardKeyPress($event)"
+        />
       </div>
-      <div class="auth__form-error" *ngIf="!isEmailValid">
-        Введите корректный email
-      </div>
+      <div class="auth__form-error" *ngIf="!isEmailValid">Введите корректный email</div>
     </div>
 
     <div class="auth__form" *ngIf="step === 'authPass'">
-      <div class="auth__form-step">
-        Шаг 2/2
-      </div>
+      <div class="auth__form-step">Шаг 2/2</div>
       <div class="auth__form-input">
-        <div class="auth__form-value">{{ field | placeholderPipe:'password' }}</div>
+        <input
+          class="auth__form-value"
+          placeholder="{{ field | placeholderPipe: 'password' }}"
+          value="{{ field }}"
+          (keydown)="keyboardKeyPress($event)"
+        />
       </div>
-      <div class="auth__form-error" *ngIf="!isPasswordValid">
-        Неверно введен пароль
-      </div>
+      <div class="auth__form-error" *ngIf="!isPasswordValid">Неверно введен пароль</div>
     </div>
 
     <div class="auth__form" *ngIf="step === 'registerPass'">
-      <div class="auth__form-step">
-        Шаг 2/3
-      </div>
+      <div class="auth__form-step">Шаг 2/3</div>
       <div class="auth__form-input">
-        <div class="auth__form-value">{{ field | placeholderPipe:'regpass' }}</div>
+        <input
+          class="auth__form-value"
+          placeholder="{{ field | placeholderPipe: 'regpass' }}"
+          value="{{ field }}"
+          (keydown)="keyboardKeyPress($event)"
+        />
       </div>
-      <div class="auth__form-error" *ngIf="!isPasswordValid">
-        Пароль должен быть не менее 6 символов
-      </div>
+      <div class="auth__form-error" *ngIf="!isPasswordValid">Пароль должен быть не менее 6 символов</div>
     </div>
 
     <div class="auth__form" *ngIf="step === 'confirmPass'">
-      <div class="auth__form-step">
-        Шаг 3/3
-      </div>
+      <div class="auth__form-step">Шаг 3/3</div>
       <div class="auth__form-input">
-        <div class="auth__form-value">{{ field | placeholderPipe:'regconfirm' }}</div>
+        <input
+          class="auth__form-value"
+          placeholder="{{ field | placeholderPipe: 'regconfirm' }}"
+          value="{{ field }}"
+          (keydown)="keyboardKeyPress($event)"
+        />
       </div>
-      <div class="auth__form-error" *ngIf="!isPasswordValid">
-        Пароли не совпадают
-      </div>
+      <div class="auth__form-error" *ngIf="!isPasswordValid">Пароли не совпадают</div>
     </div>
 
     <app-keyboard [settings]="keyboardSettings" (keyEvent)="onKeyboardEvent($event)"></app-keyboard>
 
-    <div class="auth__info">Вы автоматически будете зарегистрированы, введя email и пароль, при условии, что Вы ранее не регистрировались.</div>
-
+    <div class="auth__info">
+      Вы автоматически будете зарегистрированы, введя email и пароль, при условии, что Вы ранее не регистрировались.
+    </div>
   </div>
-
 </div>

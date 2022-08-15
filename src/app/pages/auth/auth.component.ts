@@ -84,20 +84,32 @@ export class AuthPageComponent implements OnInit, OnDestroy {
 
   public onKeyboardEvent(key: string): void {
     switch (key) {
+      case 'Backspace':
       case 'backspace':
         if (this.field.length > 0) {
           this.field = this.field.slice(0, -1);
         }
         break;
 
+      case 'Enter':
       case 'OK':
         this.nextStep();
+        break;
+
+      case 'Shift':
+      case 'Control':
+      case 'Alt':
+      case 'Tab':
         break;
 
       default:
         this.field += key;
         break;
     }
+  }
+
+  public keyboardKeyPress(event: KeyboardEvent): void {
+    this.onKeyboardEvent(event.key);
   }
 
   private nextStep(): void {
