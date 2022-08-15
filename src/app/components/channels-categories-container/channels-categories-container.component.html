@@ -1,13 +1,11 @@
 <div class="channels-categories-container">
-  <div class="channels-categories" [ngClass]="{ opened: isContainerOpened }">
-    <div
-      class="channels-categories__category"
-      [ngClass]="{ 'chosen': category.id === chosenCategory }"
+  <div class="channels-categories" [class.opened]="isContainerOpened">
+    <app-channel-category
       *ngFor="let category of channelsCategories$ | async"
-      (click)="chooseCategory(category.id)"
-    >
-      {{ category.name }}
-    </div>
+      [category]="category"
+      [chosenCategory]="chosenCategory"
+      (chosenCategoryIdChange)="chooseCategory($event)"
+    ></app-channel-category>
   </div>
   <div class="toggle-button" (click)="toggleContainer()">
     <span [class.opened]="isContainerOpened"></span>

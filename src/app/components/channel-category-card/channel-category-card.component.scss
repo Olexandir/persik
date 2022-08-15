@@ -1,0 +1,12 @@
+.category {
+  width: fit-content;
+  background: rgb(10, 10, 10);
+  border-radius: 4px;
+  color: whitesmoke;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.category.chosen {
+  background: #e05f20;
+}
