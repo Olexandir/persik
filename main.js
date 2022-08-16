@@ -1,12 +1,10 @@
 const global = require('./electron/global/global');
 
-const mainWindowState = global.windowStateKeeper({
-  defaultWidth: 1300,
-  defaultHeight: 750
-});
-
 function initWindow() {
-  const global = require('./electron/global/global');
+  const mainWindowState = global.windowStateKeeper({
+    defaultWidth: 1300,
+    defaultHeight: 750
+  });
   global.win = new global.BrowserWindow({
     x: mainWindowState.x,
     y: mainWindowState.y,
