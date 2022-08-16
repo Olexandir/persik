@@ -13,7 +13,9 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build --configuration production",
-    "electron": "ng build && electron ."
+    "electron": "ng build && electron .",
+    "packager:win": "electron-packager . PersikApp --platform=win32 --arch=all",
+    "packager:mac": "electron-packager . PersikApp --platform=darwin --arch=all"
   },
   "private": true,
   "dependencies": {
@@ -54,6 +56,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "electron": "^20.0.2",
+    "electron-packager": "^15.5.1",
     "fs-extra": "^8.1.0",
     "fs-extra-promise": "^1.0.1",
     "grunt-cache-bust": "^1.7.0",

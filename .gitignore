@@ -4,6 +4,9 @@
 /dist
 /tmp
 /out-tsc
+/WinApp-win32-ia32
+/WinApp-win32-x64
+/WinApp-win32-arm64
 
 # dependencies
 /node_modules
