@@ -58,15 +58,28 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     return this.searchedChannels && this.searchedChannels.length > 0;
   }
 
+  public keyboardKeyPress(event: KeyboardEvent): void {
+    this.onKeyboardEvent(event.key);
+  }
+
   public onKeyboardEvent(key: string): void {
     switch (key) {
+      case 'Backspace':
       case 'backspace':
         if (this.searchString.length > 0) {
           this.searchString = this.searchString.slice(0, -1);
         }
         break;
+
+      case 'Enter':
       case 'OK':
         this.search();
+        break;
+
+      case 'Shift':
+      case 'Control':
+      case 'Alt':
+      case 'Tab':
         break;
 
       default:
