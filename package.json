@@ -13,18 +13,10 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build --configuration production",
-    "build-lg": "npm run build && rm -rf ./platforms/webos/build && mkdir ./platforms/webos/build && cp -r ./dist/* ./platforms/webos/build/ && cp -r ./platforms/webos/resources/* ./platforms/webos/build/ && ares-package -o ./platforms/webos/build/ ./platforms/webos/build/",
-    "build-samsung": "npm run build && rm -rf ./platforms/tizen/dist && mkdir ./platforms/tizen/dist && cp -r ./dist/* ./platforms/tizen/dist/ && npm run samsung-build-web && npm run samsung-package",
-    "samsung-clear-cert": "tizen security-profiles remove -n persikby",
-    "samsung-add-cert": "tizen security-profiles add -n persikby -a ./platforms/tizen/keystore/persikby.p12 -p persikby",
-    "samsung-build-web": "cp -r ./platforms/tizen/src/* ./platforms/tizen/dist && tizen build-web -- ./platforms/tizen/dist",
-    "samsung-package": "tizen package --type wgt --sign persikby -- ./platforms/tizen/dist/.buildResult",
-    "samsung-copyres": "cp ./platforms/tizen/dist/.buildResult/TV BY Persik.wgt ./platforms/tizen/src/",
-    "samsung-cleandir": "rm -rf ./platforms/tizen/dist",
-    "build-android": "npm run build && rm -rf ./platforms/android/www/* && cp -r ./dist/* ./platforms/android/www && cd ./platforms/android && cordova build android",
-    "android-sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore platforms/android/persik.keystore platforms/android/platforms/android/app/build/outputs/apk/release/app-release.apk persik",
-    "android-sign-final": "zipalign -v 4 platforms/android/platforms/android/app/build/outputs/apk/release/app-release.apk platforms/android/platforms/android/app/build/outputs/apk/release/by.persik.androidtv.apk",
-    "electron": "ng build && electron ."
+    "electron": "ng build && electron .",
+    "packager:win": "electron-packager . PersikApp --platform=win32 --arch=all",
+    "packager:mac": "electron-packager . PersikApp --platform=darwin --arch=all",
+    "watch": "nodemon -e ts -w ./src -x npm run electron"
   },
   "private": true,
   "dependencies": {
@@ -65,6 +57,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "electron": "^20.0.2",
+    "electron-packager": "^15.5.1",
     "fs-extra": "^8.1.0",
     "fs-extra-promise": "^1.0.1",
     "grunt-cache-bust": "^1.7.0",
@@ -75,8 +68,9 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "nodemon": "^2.0.19",
     "protractor": "~7.0.0",
-    "ts-node": "~7.0.0",
+    "ts-node": "^7.0.1",
     "tslint": "~6.1.0",
     "typescript": "~4.5.4"
   }

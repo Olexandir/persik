@@ -4,9 +4,7 @@ function initWindow() {
   const mainWindowState = global.windowStateKeeper({
     defaultWidth: 1300,
     defaultHeight: 750
-    // fullscreen: true
   });
-
   global.win = new global.BrowserWindow({
     x: mainWindowState.x,
     y: mainWindowState.y,
@@ -15,9 +13,8 @@ function initWindow() {
     center: true,
     minWidth: 1180,
     minHeight: 600,
-    // fullscreen: mainWindowState.fullscreen,
     fullscreen: true,
-    titleBarStyle: 'default',
+    titleBarStyle: 'hidden',
     trafficLightPosition: {
       x: 12,
       y: 20
@@ -29,8 +26,8 @@ function initWindow() {
       nodeIntegrationInWorker: false,
       contextIsolation: true,
       devTools: global.isDev
-    }
-    // frame: false
+    },
+    frame: false
   });
 
   global.win.loadURL(
@@ -47,7 +44,6 @@ function initWindow() {
     global.win = null;
   });
 
-  //TODO: devTools
   global.win.webContents.openDevTools();
 }
 

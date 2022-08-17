@@ -1,61 +1,61 @@
 <div class="page">
-
   <app-header></app-header>
 
-  <ng-container *ngIf="isSearchState then searchTemplate else resultsTemplate"></ng-container>
-
+  <ng-container *ngIf="isSearchState; then searchTemplate; else resultsTemplate"></ng-container>
 </div>
 
-
 <ng-template #searchTemplate>
-
   <div class="search">
-    <div class="search__input">
+    <!-- <div class="search__input">
       {{ searchString }}
-    </div>
+    </div> -->
+    <input class="search__input" [value]="searchString" (keydown)="keyboardKeyPress($event)" />
 
     <div class="search__error" *ngIf="isShowError">{{ minLengthError }}</div>
 
-      <!-- <div nav-group class="fastlink">
+    <!-- <div nav-group class="fastlink">
         <div class="fastlink__btn" nav-item item-vertical (keyEnterEvent)="searchByAll()" (bottomBorderEvent)="onBottomEvent()">Найти каналы из сети интернет</div>
       </div> -->
 
-      <div class="keyboard">
-        <app-keyboard (keyEvent)="onKeyboardEvent($event)" (topPositionEvent)="onTopEvent()"></app-keyboard>
-      </div>
-    
+    <div class="keyboard">
+      <app-keyboard (keyEvent)="onKeyboardEvent($event)" (topPositionEvent)="onTopEvent()"></app-keyboard>
+    </div>
 
     <div class="notfound" *ngIf="isNotFound">По Вашему запросу ничего не найдено.</div>
   </div>
-
 </ng-template>
 
-
 <ng-template #resultsTemplate>
-
   <div nav-container>
     <div class="search" nav-group>
-      <div class="search__input" nav-item item-horizontal (click)="setSearchState()" (keyEnterEvent)="setSearchState()">{{ searchString }}</div>
+      <!-- <div class="search__input" nav-item item-horizontal (click)="setSearchState()" (keyEnterEvent)="setSearchState()">{{ searchString }}</div> -->
+      <input
+        class="search__input"
+        nav-item
+        item-horizontal
+        (click)="setSearchState()"
+        (keyEnterEvent)="setSearchState()"
+        (keydown)="keyboardKeyPress($event)"
+        [value]="searchString"
+      />
     </div>
 
     <div class="results">
       <div nav-group *ngIf="isHaveChannels">
         <app-channels-tape title="Каналы" [channels]="searchedChannels"></app-channels-tape>
       </div>
-  
+
       <div nav-group *ngIf="isHaveVideos">
         <app-video-tape title="Фильмы" [tape]="videosTape.videos" type="video"></app-video-tape>
       </div>
-  
+
       <div nav-group *ngIf="isHaveTvshows">
         <app-video-tape title="Передачи" [tape]="tvshowsTape.videos" type="tv"></app-video-tape>
       </div>
-  
+
       <div nav-group *ngIf="isHaveBooks">
         <app-bought-book-tape title="Книги" [books]="books"></app-bought-book-tape>
       </div>
     </div>
-
   </div>
-
 </ng-template>
