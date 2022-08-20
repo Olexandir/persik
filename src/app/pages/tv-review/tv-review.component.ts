@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { BackService } from './../../services/back.service';
@@ -20,14 +20,13 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
   public genres: Genre[] = [];
   public chosenCategory = 0;
 
-  private currentCount = DEFAULT_COUNT;
   public currentTime: number;
   public activeGenre: Genre;
-  public channelsByRows$: Observable<Channel[][]>;
+  public channelList: Observable<Channel[]>;
   public channelsLoader$: BehaviorSubject<boolean> = new BehaviorSubject(true);
-
   public isShowPreloadArea = true;
 
+  private currentCount = DEFAULT_COUNT;
   private destroy$ = new Subject();
 
   constructor(
@@ -38,19 +37,13 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.backService.backEvent.pipe(takeUntil(this.destroy$)).subscribe((_) => {
-      this.backService.goToMain();
-    });
-    this.activatedRoute.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params) => {
-      this.changeGenre(params.genre);
-    });
-    this.channelsByRows$ = this.getChannels();
-
+    this.startSubscriptions();
+    this.channelList = this.getChannels();
     this.currentTime = this.timeService.currentTime;
   }
 
-  public filterChannelsByCategory(categoryId: number) {
-    this.chosenCategory = categoryId
+  public filterChannelsByCategory(categoryId: number): void {
+    this.chosenCategory = categoryId;
     if (categoryId === 0) return;
   }
 
@@ -59,12 +52,17 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
     this.channelsLoader$.next(false);
   }
 
-  public trackByRowIds(ind: number): number {
-    return ind;
+  public trackByChannelId(channel: Channel): number {
+    return channel.channel_id;
   }
 
-  public trackByChannelId(ind: number, channel: Channel): number {
-    return channel.channel_id;
+  private startSubscriptions(): void {
+    this.backService.backEvent.pipe(takeUntil(this.destroy$)).subscribe((_) => {
+      this.backService.goToMain();
+    });
+    this.activatedRoute.queryParams.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      this.changeGenre(params.genre);
+    });
   }
 
   private changeGenre(genre: string): void {
@@ -78,18 +76,22 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
     this.channelsLoader$.next(true);
   }
 
-  private getChannels(): Observable<Channel[][]> {
-    return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
-      map(([channels, isReload]) => {
+  private getChannels(): Observable<Channel[]> {
+    return this.channelsFacade.channels$.pipe(
+      takeUntil(this.destroy$),
+      map((channels) => {
         const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
         const slicedChannels = filteredChannels.slice(0, this.currentCount);
-        const channelsByRows = this.buildChannelRows(slicedChannels);
-        if (isReload) {
-          this.focusOnFirst();
-        }
-        return channelsByRows;
+        return slicedChannels;
       })
     );
+    // return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
+    //   map(([channels, isReload]) => {
+    //     const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
+    //     const slicedChannels = filteredChannels.slice(0, this.currentCount);
+    //     return slicedChannels;
+    //   })
+    // );
   }
 
   private filterChannelsByGenre(channels: Channel[], desiredGenre: Genre): Channel[] {
@@ -102,24 +104,14 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
     return filteredChannels;
   }
 
-  private focusOnFirst(): void {
-    setTimeout(() => {
-      const elem: HTMLElement = document.querySelector('.page [nav-group]');
-      if (elem) {
-        elem.focus();
-      }
-    }, 100);
-  }
-
-  private buildChannelRows(channels: Channel[]): Channel[][] {
-    return channels.reduce((channelsByRows, channel, ind) => {
-      if (ind % 4 === 0) {
-        channelsByRows.push([]);
-      }
-      channelsByRows[channelsByRows.length - 1].push(channel);
-      return channelsByRows;
-    }, [] as Channel[][]);
-  }
+  // private focusOnFirst(): void {
+  //   setTimeout(() => {
+  //     const elem: HTMLElement = document.querySelector('.page [nav-group]');
+  //     if (elem) {
+  //       elem.focus();
+  //     }
+  //   }, 100);
+  // }
 
   ngOnDestroy(): void {
     this.destroy$.next();
