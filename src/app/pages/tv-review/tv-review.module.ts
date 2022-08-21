@@ -8,9 +8,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ChannelsCategoriesContainerModule } from 'src/app/components/channels-categories-container/channels-categories-container.module';
 import { FilterChannelsByCategoryPipe } from './filter-channels-by-category.pipe';
+import { ScrollingButtonComponent } from 'src/app/components/scrolling-button/scrolling-button.component';
 
 @NgModule({
-  declarations: [TvReviewPageComponent, FilterChannelsByCategoryPipe],
+  declarations: [TvReviewPageComponent, FilterChannelsByCategoryPipe, ScrollingButtonComponent],
   imports: [
     CommonModule,
     NavModule,

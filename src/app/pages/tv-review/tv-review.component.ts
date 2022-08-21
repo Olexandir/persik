@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { BackService } from './../../services/back.service';
@@ -17,6 +17,8 @@ import { DEFAULT_COUNT, STEP } from './constants/channels-pagination';
   styleUrls: ['./tv-review.component.scss']
 })
 export class TvReviewPageComponent implements OnInit, OnDestroy {
+  @ViewChild('page') public page: ElementRef<HTMLDivElement>;
+
   public genres: Genre[] = [];
   public chosenCategory = 0;
 
@@ -40,6 +42,14 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
     this.startSubscriptions();
     this.channelList = this.getChannels();
     this.currentTime = this.timeService.currentTime;
+  }
+
+  public scroll(vector: string): void {
+    console.log(this.page.nativeElement.getBoundingClientRect().height);
+    // this.page.nativeElement.scrollIntoView({
+    //   block: 'start',
+    //   behavior: 'smooth'
+    // });
   }
 
   public filterChannelsByCategory(categoryId: number): void {
@@ -77,21 +87,21 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
   }
 
   private getChannels(): Observable<Channel[]> {
-    return this.channelsFacade.channels$.pipe(
-      takeUntil(this.destroy$),
-      map((channels) => {
-        const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
-        const slicedChannels = filteredChannels.slice(0, this.currentCount);
-        return slicedChannels;
-      })
-    );
-    // return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
-    //   map(([channels, isReload]) => {
+    // return this.channelsFacade.channels$.pipe(
+    //   takeUntil(this.destroy$),
+    //   map((channels) => {
     //     const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
     //     const slicedChannels = filteredChannels.slice(0, this.currentCount);
     //     return slicedChannels;
     //   })
     // );
+    return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
+      map(([channels, isReload]) => {
+        const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
+        const slicedChannels = filteredChannels.slice(0, this.currentCount);
+        return slicedChannels;
+      })
+    );
   }
 
   private filterChannelsByGenre(channels: Channel[], desiredGenre: Genre): Channel[] {
