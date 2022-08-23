@@ -17,8 +17,6 @@ import { DEFAULT_COUNT, STEP } from './constants/channels-pagination';
   styleUrls: ['./tv-review.component.scss']
 })
 export class TvReviewPageComponent implements OnInit, OnDestroy {
-  @ViewChild('page') public page: ElementRef<HTMLDivElement>;
-
   public genres: Genre[] = [];
   public chosenCategory = 0;
 
@@ -42,14 +40,6 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
     this.startSubscriptions();
     this.channelList = this.getChannels();
     this.currentTime = this.timeService.currentTime;
-  }
-
-  public scroll(vector: string): void {
-    console.log(this.page.nativeElement.getBoundingClientRect().height);
-    // this.page.nativeElement.scrollIntoView({
-    //   block: 'start',
-    //   behavior: 'smooth'
-    // });
   }
 
   public filterChannelsByCategory(categoryId: number): void {

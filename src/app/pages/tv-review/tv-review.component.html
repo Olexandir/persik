@@ -4,7 +4,6 @@
     (chosenCategoryChange)="filterChannelsByCategory($event)"
   ></app-channels-categories-container>
   <div
-    #page
     class="channel-viewport"
     *ngIf="isShowPreloadArea"
     infiniteScroll
@@ -21,5 +20,4 @@
       class="item"
     ></app-channel-card>
   </div>
-  <app-scrolling-button (scroll)="scroll($event)"></app-scrolling-button>
 </div>

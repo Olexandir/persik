@@ -1,12 +1,38 @@
+@import '../../../sizes.scss';
+
 .category {
+  display: flex;
   width: fit-content;
+  height: $categories-card-height;
   background: rgb(10, 10, 10);
-  border-radius: 4px;
+  border-radius: 6px;
   color: whitesmoke;
-  padding: 2px 6px;
+  padding: 4px 8px;
   cursor: pointer;
+  font-size: $category-card-font;
 }
 
 .category.chosen {
   background: #e05f20;
+}
+
+@media screen and (max-width: 1370px) {
+  .category {
+    height: $categories-card-height-2;
+    font-size: $category-card-font-2;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  .category {
+    height: $categories-card-height-3;
+    font-size: $category-card-font-3;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .category {
+    height: $categories-card-height-4;
+    font-size: $category-card-font-4;
+  }
 }

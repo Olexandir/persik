@@ -4,6 +4,7 @@
   background-color: #232323;
   position: relative;
   box-shadow: 0 0 .94rem 0 rgba(0, 0, 0, 0.5);
+  border-radius: 14px;
   margin-bottom: 1.87rem;
   color: #fff;
   cursor: pointer;
@@ -11,6 +12,7 @@
   margin-right: 2%;
   display: inline-block;
   padding-bottom: 1.25rem;
+  overflow: hidden;
 
   .logo {
     position: absolute;
@@ -108,6 +110,7 @@
     height: .25rem;
     background-color: $main-hover;
     transition: .3s;
+    border-radius: 4px;
   }
   &__play{
     position: absolute;
