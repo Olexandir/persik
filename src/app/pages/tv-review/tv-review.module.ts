@@ -8,7 +8,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ChannelsCategoriesContainerModule } from 'src/app/components/channels-categories-container/channels-categories-container.module';
 import { FilterChannelsByCategoryPipe } from './filter-channels-by-category.pipe';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [TvReviewPageComponent, FilterChannelsByCategoryPipe],
@@ -18,8 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
     ChannelCardModule,
     ScrollingModule,
     InfiniteScrollModule,
-    MatIconModule,
     ChannelsCategoriesContainerModule,
+    // MatIconModule,
     RouterModule.forChild([
       {
         path: '',
