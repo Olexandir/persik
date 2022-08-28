@@ -32,6 +32,6 @@ export class InfoPageComponent implements OnInit {
     this.authService.logout();
     this.dataService.loadChannels();
     this.favoritesFacade.loadFavoritesData();
-    this.router.navigate(['home']);
+    this.router.navigate(['tv-review']);
   }
 }

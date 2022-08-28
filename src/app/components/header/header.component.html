@@ -3,9 +3,25 @@
 
   <img src="assets/logo.png" alt="" class="header__logo" />
 
-  <div class="header__auth" routerLink="/account">
-    <i class="fa fa-user" aria-hidden="true"></i>
-  </div>
+  <ng-container *ngIf="isAuthorised; else notAuth">
+    <div class="header__account" routerLink="/account">
+      <i class="fa fa-user" aria-hidden="true"></i>
+    </div>
+  </ng-container>
+
+  <ng-template #notAuth>
+    <span routerLink="/auth">Log In</span>
+  </ng-template>
+
+  <!-- <ng-container *ngIf="!isAuthorised">
+    <div class="header__account" routerLink="/auth">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <i class="fa-solid fa-right-to-bracket"></i>
+      <i class="fa-solid fa-arrow-right-to-bracket"></i>
+      <i class="fa fa-sign-in" aria-hidden="true"></i>
+      Log In
+    </div>
+  </ng-container> -->
 
   <!-- <span class="header__time">{{ time }}</span> -->
 </div>

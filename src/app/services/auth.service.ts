@@ -1,3 +1,4 @@
+import { catchError, map } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -5,47 +6,42 @@ import { AuthUser, UserInfo, UserSubscription } from '@models/core';
 
 @Injectable()
 export class AuthService {
-
   private BASE_URL = 'https://api.persik.by/';
 
   public loginStateEvent = new Subject<boolean>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  checkEmail(email: string): Promise<EmailCheck> {
+  public checkEmail(email: string): Promise<EmailCheck> {
     const params: HttpParams = new HttpParams().set('email', email);
     return this.http.get<EmailCheck>(this.BASE_URL.concat('v2/auth/check'), { params }).toPromise();
   }
 
-  login(email: string, password: string): Promise<AuthUser> {
+  public login(email: string, password: string): Promise<AuthUser> {
     const params: HttpParams = new HttpParams().set('email', email).set('password', password);
     return this.http.post<AuthUser>(this.BASE_URL.concat('v1/account/login'), {}, { params }).toPromise();
   }
 
-  register(email: string, password: string): Promise<any> {
-    const params: HttpParams = new HttpParams()
-      .set('email', email)
-      .set('password', password);
-    return this.http.post<AuthUser>(this.BASE_URL.concat('v1/account/registration'), {}, { params })
-      .toPromise();
+  public register(email: string, password: string): Promise<any> {
+    const params: HttpParams = new HttpParams().set('email', email).set('password', password);
+    return this.http.post<AuthUser>(this.BASE_URL.concat('v1/account/registration'), {}, { params }).toPromise();
   }
 
-  logout() {
+  public logout(): void {
     this.token = '';
     this.user_id = '';
     this.sendAuthEvent();
   }
 
-  getAccountInfo(): Observable<UserInfo> {
-    return this.http
-      .get<UserInfo>(this.BASE_URL.concat('v1/account/info'));
+  public getAccountInfo(): Observable<UserInfo> {
+    return this.http.get<UserInfo>(this.BASE_URL.concat('v1/account/info')).pipe(map((data) => data));
   }
 
-  getUserSubscriptions(): Promise<UserSubscription[]> {
+  public getUserSubscriptions(): Promise<UserSubscription[]> {
     return this.http.get<UserSubscription[]>(this.BASE_URL.concat('v2/billing/subscriptions')).toPromise();
   }
 
-  sendAuthEvent(): void {
+  public sendAuthEvent(): void {
     this.loginStateEvent.next(this.isLogin);
   }
 

@@ -1,7 +1,0 @@
-<div class="channels" nav-group>
-  <div class="channels__item" [class.active]="isActiveChannel(ch.channel_id)" nav-item item-vertical (keyEnterEvent)="openChannel(ch.channel_id)" (focus)="onFocus(ch)" *ngFor="let ch of channels; let index = index">
-    <span class="channels__item-number">{{ index + 1 }}</span>
-    <div class="channels__item-logo" style.backgroundImage="url({{ ch.logo }})" alt=""></div>
-    <span class="channels__item-name">{{ ch.name }}</span>
-  </div>
-</div>

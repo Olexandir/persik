@@ -18,7 +18,7 @@ export class BackService {
   constructor(private router: Router) {}
 
   goToMain(): void {
-    this.router.navigate(['home']);
+    this.router.navigate(['tv-review']);
   }
 }
 

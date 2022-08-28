@@ -1,9 +1,0 @@
-<div class="page page_tvguide" nav-container>
-  <app-tv-guide-channels [activeChannelId]="activeChannel?.channel_id" [channels]="filteredChannels$ | async" (focusChannel)="onChannelChange($event)"></app-tv-guide-channels>
-
-  <ng-container *ngIf="allTvshows$ | async as allTvshows">
-    <app-tv-guide-dates (changeDateEvent)="onDateChange($event)" [activeDate]="currentDate" [dates]="allTvshows | appUniqueDates"></app-tv-guide-dates>
-    <app-tv-guide-shows [tvshows]="allTvshows | appCurrentDateTvshows: currentDate" (focusTvshow)="onTvshowFocus($event)" [dvr]="dvr"></app-tv-guide-shows>
-    <app-preview (click)="redirectFocus()" [channel]="activeChannel" [tvshow]="selectedTvshow$ | async"></app-preview>
-  </ng-container>
-</div>

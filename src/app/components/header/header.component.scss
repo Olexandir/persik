@@ -1,28 +1,36 @@
 @import '../../../assets/fonts/fonts.css';
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    box-sizing: border-box;
-    padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding: 0;
+  height: 45px;
+  margin-top: 40px;
+  color: white;
+  padding-bottom: 6px;
+  font-family: 'OpenSans-Bold', sans-serif;
+  font-size: 1rem;
+
+  &__logo {
+    margin: 30px auto 0 0;
+    width: 195px;
+  }
+
+  &__account {
     height: 45px;
     margin-top: 40px;
     color: white;
-    padding-bottom: 6px;
-    font-family: 'OpenSans-Bold', sans-serif;
-    font-size: 1rem;
+    padding: 0 40px;
+    cursor: pointer;
+  }
 
-    &__logo {
-        margin: 30px auto 0 0;
-        width: 195px;
-    }
-
-    &__auth {
-      height: 45px;
-      margin-top: 40px;
-      color: white;
-      padding: 0 40px;
-      cursor: pointer;
-    }
+  &__auth {
+    height: 45px;
+    margin-top: 40px;
+    color: white;
+    padding: 0 40px;
+    cursor: pointer;
+  }
 }
