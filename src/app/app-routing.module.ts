@@ -11,10 +11,10 @@ const routes: Routes = [
     path: 'tv-review',
     loadChildren: () => import('./pages/tv-review/tv-review.module').then(m => m.TvReviewPageModule)
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
-  },
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
+  // },
   {
     path: 'channel-player/:id',
     loadChildren: () => import('./pages/channel-player/channel-player.module').then(m => m.ChannelPlayerPageModule)
@@ -31,46 +31,46 @@ const routes: Routes = [
     path: 'account',
     loadChildren: () => import('./pages/account/account.module').then(m => m.AccountPageModule)
   },
-  {
-    path: 'tv-guide',
-    loadChildren: () => import('./pages/tv-guide/tv-guide.module').then(m => m.TvGuideModule)
-  },
-  {
-    path: 'films',
-    loadChildren: () => import('./pages/films/films.module').then(m => m.FilmsPageModule)
-  },
-  {
-    path: 'series',
-    loadChildren: () => import('./pages/series/series.module').then(m => m.SeriesPageModule)
-  },
-  {
-    path: 'cartoons',
-    loadChildren: () => import('./pages/cartoons/cartoons.module').then(m => m.CartoonsPageModule)
-  },
-  {
-    path: 'shows',
-    loadChildren: () => import('./pages/shows/shows.module').then(m => m.ShowsPageModule)
-  },
-  {
-    path: 'courses',
-    loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesPageModule)
-  },
-  {
-    path: 'content-description/:type',
-    loadChildren: () => import('./pages/content-description/content-description.module').then(m => m.ContentDescriptionPageModule)
-  },
-  {
-    path: 'search',
-    loadChildren: () => import('./pages/search/search.module').then(m => m.SearchPageModule)
-  },
-  {
-    path: 'favorite',
-    loadChildren: () => import('./pages/favorite/favorite.module').then(m => m.FavoritePageModule)
-  },
-  {
-    path: 'audiobooks',
-    loadChildren: () => import('./pages/audiobooks/audiobooks.module').then(m => m.AudiobooksPageModule)
-  }
+  // {
+  //   path: 'tv-guide',
+  //   loadChildren: () => import('./pages/tv-guide/tv-guide.module').then(m => m.TvGuideModule)
+  // },
+  // {
+  //   path: 'films',
+  //   loadChildren: () => import('./pages/films/films.module').then(m => m.FilmsPageModule)
+  // },
+  // {
+  //   path: 'series',
+  //   loadChildren: () => import('./pages/series/series.module').then(m => m.SeriesPageModule)
+  // },
+  // {
+  //   path: 'cartoons',
+  //   loadChildren: () => import('./pages/cartoons/cartoons.module').then(m => m.CartoonsPageModule)
+  // },
+  // {
+  //   path: 'shows',
+  //   loadChildren: () => import('./pages/shows/shows.module').then(m => m.ShowsPageModule)
+  // },
+  // {
+  //   path: 'courses',
+  //   loadChildren: () => import('./pages/courses/courses.module').then(m => m.CoursesPageModule)
+  // },
+  // {
+  //   path: 'content-description/:type',
+  //   loadChildren: () => import('./pages/content-description/content-description.module').then(m => m.ContentDescriptionPageModule)
+  // },
+  // {
+  //   path: 'search',
+  //   loadChildren: () => import('./pages/search/search.module').then(m => m.SearchPageModule)
+  // },
+  // {
+  //   path: 'favorite',
+  //   loadChildren: () => import('./pages/favorite/favorite.module').then(m => m.FavoritePageModule)
+  // },
+  // {
+  //   path: 'audiobooks',
+  //   loadChildren: () => import('./pages/audiobooks/audiobooks.module').then(m => m.AudiobooksPageModule)
+  // }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, {

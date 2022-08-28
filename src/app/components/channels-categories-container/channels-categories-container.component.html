@@ -8,8 +8,11 @@
     ></app-channel-category>
   </div>
   <div class="toggle-button" (click)="toggleContainer()">
-    <!-- <span [class.opened]="isContainerOpened"></span> -->
-    <!-- <mat-icon></mat-icon> -->
-    <i class="fa fa-angle-down" aria-hidden="true"></i>
+    <ng-container *ngIf="!isContainerOpened; else opened">
+      <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </ng-container>
+    <ng-template #opened>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </ng-template>
   </div>
 </div>

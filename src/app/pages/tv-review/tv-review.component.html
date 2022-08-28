@@ -1,4 +1,7 @@
-<div class="page page_withfilter" nav-container>
+<div class="page page_withfilter">
+
+  <app-header></app-header>
+
   <app-channels-categories-container
     [chosenCategory]="chosenCategory"
     (chosenCategoryChange)="filterChannelsByCategory($event)"
