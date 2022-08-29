@@ -1,0 +1,36 @@
+@import '../../../colors.scss';
+
+.auth-modal {
+  position: absolute;
+  background: none;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+
+  &__back {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  &__window {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: fit-content;
+    border: 1px solid $main-hover;
+    top: 50%;
+    border-radius: 8px;
+
+    .close-row {
+      color: white;
+    }
+  }
+}

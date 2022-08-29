@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   public isShowExitModal: boolean;
   public isLoading$: Observable<boolean>;
 
+  public isAuthModalOpen: boolean;
   public code: number;
 
   private readonly gacodes = {
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthModalOpen = true;
     this.integrateGA();
     this.offNativeNavigation();
     this.isLoading$ = this.loadingFacade.isLoading$;
@@ -61,8 +63,11 @@ export class AppComponent implements OnInit {
     this.channelsFacade.loadChannelCategories();
     this.vodFacade.loadCategories();
     this.makeFontSize();
-
     this.loadFavoriteIsNeeded();
+  }
+
+  public openModal(): void {
+    this.isAuthModalOpen = true;
   }
 
   private loadFavoriteIsNeeded(): void {

@@ -10,7 +10,10 @@
   </ng-container>
 
   <ng-template #notAuth>
-    <span routerLink="/auth">Log In</span>
+    <div class="header__account" (click)="openModal()">
+      <!-- <span routerLink="/auth"</span> -->
+      <span>Log In</span>
+    </div>
   </ng-template>
 
   <!-- <ng-container *ngIf="!isAuthorised">

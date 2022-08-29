@@ -1,5 +1,6 @@
 @import './colors.scss';
 @import './assets/fonts/fonts.css';
+@import '~material-icons/iconfont/material-icons.css';
 
 body {
   margin: 0;
@@ -17,7 +18,7 @@ body {
 
 
 .page {
-  margin-left: 3.29rem;
+  // margin-left: 3.29rem;
   height: 100vh;
   overflow: hidden;
   overflow-x: hidden;

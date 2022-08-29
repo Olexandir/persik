@@ -1,7 +1,4 @@
 <div class="page page_withfilter">
-
-  <app-header></app-header>
-
   <app-channels-categories-container
     [chosenCategory]="chosenCategory"
     (chosenCategoryChange)="filterChannelsByCategory($event)"
@@ -14,7 +11,6 @@
     [infiniteScrollThrottle]="200"
     [scrollWindow]="false"
     (scrolled)="loadMoreChannels()"
-
   >
     <app-channel-card
       *ngFor="let item of channelList | async | filterChannelsByCategory: chosenCategory; trackBy: trackByChannelId"
