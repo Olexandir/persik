@@ -1,4 +1,3 @@
-import { MatIconModule } from '@angular/material/icon';
 import { HeaderModule } from './components/header/header.module';
 import { PlayerModule } from './components/player/player.module';
 import { ConnectionInfoComponent } from './components/connection-info/connection-info.component';
@@ -9,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { LoopingRhumbusesSpinnerModule } from 'angular-epic-spinners';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 
