@@ -15,7 +15,6 @@ import {
 
 import { environment } from './../../../environments/environment.prod';
 import * as Hls from 'hls.js';
-import * as NowPlaying from '../../../../platforms/android/plugins/cordova-plugin-nowplaying/www/NowPlaying.js';
 import { AdultCheckState } from 'src/app/services/adult.service';
 import { ChannelsFacade } from 'src/redux/channels/channels.facade';
 import { LoadingFacade } from 'src/redux/loading/loading.facade';
@@ -256,20 +255,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
   }
 
   private playStream(channel: Channel, streamUrl: string): void {
-    this.setNowPlayingForAndroid(channel, this.contentPoster);
     this.playUrl(streamUrl);
-  }
-
-  private setNowPlayingForAndroid(channel: Channel, poster: string): void {
-    if (environment.platform === 'android') {
-      NowPlaying.set({
-        artwork: poster,
-        albumTitle: channel.name,
-        persistentID: channel.channel_id,
-        playbackDuration: 500,
-        title: channel.name
-      });
-    }
   }
 
   private playTvshow(id: string) {
