@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { BackService, DataService, MenuControlService, AuthService } from '@services/core';
 
 import { environment } from 'src/environments/environment';
-import { FavoriteService } from './services/favorite.service';
 import { KeyMap } from '../keymaps/keymap';
 import { LoadingFacade } from './../redux/loading/loading.facade';
 import { FavoritesFacade } from 'src/redux/favorite/favorite.facade';
@@ -111,9 +110,6 @@ export class AppComponent implements OnInit {
   }
 
   private offNativeNavigation(): void {
-    document.addEventListener('deviceready', () => {
-      document.addEventListener('backbutton', this.androidBackHandler.bind(this), false);
-    });
     document.addEventListener('keydown', (event: KeyboardEvent) => {
       this.navigations(event);
     });
@@ -123,20 +119,12 @@ export class AppComponent implements OnInit {
     event.preventDefault();
     const code = event.keyCode;
     if (code === KeyMap.BACK) {
-      if (this.router.url.includes('home')) {
+      console.log('check!');
+      if (this.router.url.includes('tv-review')) {
         this.isShowExitModal = !this.isShowExitModal;
       } else {
         this.backService.backEvent.next();
       }
-    }
-  }
-
-  private androidBackHandler(event) {
-    event.preventDefault();
-    if (this.router.url.includes('home')) {
-      this.isShowExitModal = !this.isShowExitModal;
-    } else {
-      this.backService.backEvent.next();
     }
   }
 }
