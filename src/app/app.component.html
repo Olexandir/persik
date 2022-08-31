@@ -4,7 +4,7 @@
 
 <router-outlet></router-outlet>
 
-<app-exit-modal (cancelEvent)="closeExitModal()" *ngIf="isShowExitModal"></app-exit-modal>
+<app-exit-modal (cancelEvent)="closeExitModal()" (confirmEvent)="closeApp()" *ngIf="isShowExitModal"></app-exit-modal>
 
 <div class="loader" *ngIf="isLoading$ | async">
   <app-looping-rhombuses-spinner animationDuration="2500" rhombusSize="25" color="white">

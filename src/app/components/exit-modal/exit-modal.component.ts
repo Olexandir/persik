@@ -7,7 +7,7 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  Output,
+  Output
 } from '@angular/core';
 import { KeyMap } from '../../../keymaps/keymap';
 declare var tizen;
@@ -15,17 +15,18 @@ declare var tizen;
 @Component({
   selector: 'app-exit-modal',
   templateUrl: './exit-modal.component.html',
-  styleUrls: ['./exit-modal.component.scss'],
+  styleUrls: ['./exit-modal.component.scss']
 })
 export class ExitModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() cancelEvent = new EventEmitter<void>();
+  @Output() confirmEvent = new EventEmitter<void>();
   @ViewChild('ok_button')
   public okButton: ElementRef<HTMLDivElement>;
   @ViewChild('cancel_button')
   public cancelButton: ElementRef<HTMLDivElement>;
   private keyboardEventHandler: any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.keyboardEventHandler = this.onKeydownEvent.bind(this);
@@ -39,12 +40,7 @@ export class ExitModalComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public confirmExit(): void {
-    if (environment.platform === 'samsung') {
-      tizen.application.getCurrentApplication().exit();
-    }
-    if (environment.platform === 'android') {
-      navigator['app'].exitApp();
-    }
+    this.confirmEvent.next();
     window.close();
   }
 

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 import { BackService, MenuControlService, AuthService } from '@services/core';
 
-import { environment } from 'src/environments/environment';
 import { KeyMap } from '../keymaps/keymap';
 import { LoadingFacade } from './../redux/loading/loading.facade';
 import { FavoritesFacade } from 'src/redux/favorite/favorite.facade';
@@ -68,6 +67,10 @@ export class AppComponent implements OnInit {
 
   public closeExitModal(): void {
     this.isShowExitModal = false;
+  }
+
+  public closeApp(): void {
+    window.close();
   }
 
   private offNativeNavigation(): void {
