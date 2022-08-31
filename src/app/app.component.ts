@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import { BackService, DataService, MenuControlService, AuthService } from '@services/core';
+import { BackService, MenuControlService, AuthService } from '@services/core';
 
 import { environment } from 'src/environments/environment';
 import { KeyMap } from '../keymaps/keymap';
@@ -25,14 +25,6 @@ export class AppComponent implements OnInit {
 
   public code: number;
 
-  private readonly gacodes = {
-    android: 'UA-148363715-1',
-    philips: 'UA-148363715-2',
-    panasonic: 'UA-148363715-3',
-    samsung: 'UA-148363715-4',
-    lg: 'UA-148363715-5'
-  };
-
   constructor(
     private menuCtrl: MenuControlService,
     private backService: BackService,
@@ -51,10 +43,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.integrateGA();
     this.offNativeNavigation();
     this.isLoading$ = this.loadingFacade.isLoading$;
-    this.addCordovaScript();
     this.menuCtrl.menuController.subscribe((isShow) => (this.isShowMenu = isShow));
     this.channelsFacade.loadChannels();
     this.channelsFacade.loadChannelCategories();
@@ -76,37 +66,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private integrateGA(): void {
-    const code = this.gacodes[environment.platform];
-    if (code) {
-      const head: HTMLHeadElement = document.querySelector('head');
-      const reference: HTMLMetaElement = document.querySelector('meta');
-
-      const script1: HTMLScriptElement = document.createElement('script');
-      script1.async = true;
-      script1.src = `https://www.googletagmanager.com/gtag/js?id=${code}`;
-
-      const script2: HTMLScriptElement = document.createElement('script');
-      script2.innerHTML = `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${code}');`;
-
-      head.insertBefore(script1, reference);
-      head.insertBefore(script2, reference);
-    }
-  }
-
   public closeExitModal(): void {
     this.isShowExitModal = false;
-  }
-
-  private addCordovaScript(): void {
-    if (environment.platform === 'android') {
-      const script = document.createElement('script');
-      script.src = 'cordova.js';
-      document.head.appendChild(script);
-    }
   }
 
   private offNativeNavigation(): void {
@@ -119,7 +80,6 @@ export class AppComponent implements OnInit {
     event.preventDefault();
     const code = event.keyCode;
     if (code === KeyMap.BACK) {
-      console.log('check!');
       if (this.router.url.includes('tv-review')) {
         this.isShowExitModal = !this.isShowExitModal;
       } else {
