@@ -15,6 +15,7 @@
   }
 
   &__window {
+    height: fit-content;
     display: flex;
     align-items: start;
     justify-content: start;
@@ -26,11 +27,87 @@
     width: 320px;
     height: fit-content;
     border: 1px solid $main-hover;
-    top: 50%;
-    border-radius: 8px;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 15px;
+
 
     .close-row {
+      width: fit-content;
+      height: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $main-hover;
+      cursor: pointer;
+      position: relative;
+      margin-left: auto;
+
+      span {
+        padding: 5px;
+        margin-right: 5px;
+        line-height: 100%;
+      }
+
+      mat-icon {
+        width: fit-content;
+        height: fit-content;
+        font-weight: lighter;
+        font-size: 44px;
+      }
+    }
+
+    .title-row {
+      width: 100%;
+      height: fit-content;
       color: white;
+      text-align: center;
+    }
+
+    .auth-form {
+      width: 100%;
+      height: fit-content;
+
+      .mat-form-field-appearance-standard {
+        width: 100%;
+        background: white;
+
+        .mat-form-field-wrapper {
+          .mat-form-field-underline {
+          }
+        }
+      }
+      .mat-form-field-appearance-standard .mat-form-field-underline {
+        background-color: $main-hover !important;
+      }
+
+      .mat-form-field-appearance-standard .mat-form-field-underline {
+        background: red;
+      }
+    }
+
+    .buttons-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+
+      button {
+        background: none;
+        outline: none;
+        border: none;
+        color: white;
+        padding: 20px 0;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .enter {
+        background: $main-hover;
+      }
+      .register {
+        border: 1px solid $main-hover;
+      }
     }
   }
 }

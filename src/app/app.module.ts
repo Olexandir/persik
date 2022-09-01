@@ -4,11 +4,13 @@ import { ConnectionInfoComponent } from './components/connection-info/connection
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { LoopingRhumbusesSpinnerModule } from 'angular-epic-spinners';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -50,11 +52,14 @@ import { AuthModalComponent } from './components/auth-modal/auth-modal.component
     GenreFilterModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot(appEffects),
+    ReactiveFormsModule,
     FormsModule,
     NavModule,
     PlayerModule,
     HeaderModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     AuthService,

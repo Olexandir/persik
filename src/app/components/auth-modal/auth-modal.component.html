@@ -1,9 +1,27 @@
 <div class="auth-modal">
   <div class="auth-modal__back"></div>
   <div class="auth-modal__window">
-    <div class="close-row">
+    <div class="close-row" (click)="closeModalWindow()">
       <span>закрыть</span>
-      <i class="fa fa-close"></i>
+      <mat-icon>clear</mat-icon>
+    </div>
+
+    <div class="title-row">ВХОД</div>
+
+    <form [formGroup]="authForm" class="auth-form">
+      <mat-form-field appearance="standard">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>password</mat-label>
+        <input matInput formControlName="password" />
+      </mat-form-field>
+    </form>
+
+    <div class="buttons-row">
+      <button class="enter">Войти</button>
+      <button class="register">Регистрация</button>
     </div>
   </div>
 </div>

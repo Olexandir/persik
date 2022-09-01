@@ -7,6 +7,8 @@
 /PersikApp-win32-ia32
 /PersikApp-win32-x64
 /PersikApp-win32-arm64
+/platforms
+/www
 
 # dependencies
 /node_modules

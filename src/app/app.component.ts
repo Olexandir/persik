@@ -53,7 +53,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isAuthModalOpen = true;
     this.integrateGA();
     this.offNativeNavigation();
     this.isLoading$ = this.loadingFacade.isLoading$;
@@ -68,6 +67,10 @@ export class AppComponent implements OnInit {
 
   public openModal(): void {
     this.isAuthModalOpen = true;
+  }
+
+  public closeModal(): void {
+    this.isAuthModalOpen = false;
   }
 
   private loadFavoriteIsNeeded(): void {
