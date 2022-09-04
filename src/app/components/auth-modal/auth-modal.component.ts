@@ -14,16 +14,24 @@ export class AuthModalComponent {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {}
-
-  createAuthForm() {
-    this.authForm = this.fb.group({
-      email: '',
-      password: ''
-    });
+  ngOnInit(): void {
+    this.createAuthForm();
   }
 
-  closeModalWindow() {
+  private createAuthForm(): void {
+    this.authForm = this.fb.group({
+      email: [''],
+      password: ['']
+    });
+    this.authForm.valueChanges.subscribe((data) => console.log(data));
+  }
+
+  public closeModalWindow(): void {
     this.closeModalWindowChange.emit(false);
+  }
+
+  public logIn() {
+    const userLoginData = this.authForm.getRawValue();
+    console.log(userLoginData);
   }
 }
