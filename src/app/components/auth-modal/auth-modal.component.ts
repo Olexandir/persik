@@ -6,6 +6,7 @@ import { AuthUser } from '@models/core';
 import { AuthService, DataService } from '@services/core';
 import { Subject } from 'rxjs';
 import { FavoritesFacade } from 'src/redux/favorite/favorite.facade';
+import { LoadingFacade } from 'src/redux/loading/loading.facade';
 
 @Component({
   selector: 'app-auth-modal',
@@ -14,6 +15,7 @@ import { FavoritesFacade } from 'src/redux/favorite/favorite.facade';
 })
 export class AuthModalComponent {
   @Output() closeModalWindowChange = new EventEmitter<boolean>();
+  @Output() isAuthorisedChange = new EventEmitter<boolean>();
 
   public authForm: FormGroup;
 
@@ -23,7 +25,8 @@ export class AuthModalComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private dataService: DataService,
-    private favoritesFacade: FavoritesFacade
+    private favoritesFacade: FavoritesFacade,
+    private loadingFacade: LoadingFacade
   ) {}
 
   ngOnInit(): void {
@@ -52,10 +55,10 @@ export class AuthModalComponent {
     const regex = /^([a-zA-Z0-9._%\+\-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$)/;
     this.authForm.valueChanges.pipe(takeUntil(this.unsubscription)).subscribe((data) => {
       if (regex.test(data.email)) {
-        console.log(true);
+        // console.log(true);
         this.authService.checkEmail(data.email).then((res) => {
           if (res.exists) {
-            console.log('email существует');
+            // console.log('email существует');
           }
         });
       }
@@ -69,6 +72,7 @@ export class AuthModalComponent {
     this.dataService.loadChannels();
     this.favoritesFacade.loadFavoritesData();
     // this.backService.goToMain();
+    this.loadingFacade.stopLoading();
     this.closeModalWindowChange.emit(false);
   }
 

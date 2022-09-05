@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   public keycode: number;
   public isShowExitModal: boolean;
   public isLoading$: Observable<boolean>;
-
+  public isAuthorized: boolean;
   public isAuthModalOpen: boolean;
   public code: number;
 
@@ -52,7 +52,8 @@ export class AppComponent implements OnInit {
     document.querySelector('html').style.fontSize = fontSize + 'px';
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.checkUser();
     this.integrateGA();
     this.offNativeNavigation();
     this.isLoading$ = this.loadingFacade.isLoading$;
@@ -71,6 +72,18 @@ export class AppComponent implements OnInit {
 
   public closeModal(): void {
     this.isAuthModalOpen = false;
+  }
+
+  public setUserrAuthorized(isUserAuthorized: boolean): void {
+    console.log(isUserAuthorized);
+    this.isAuthorized = isUserAuthorized;
+  }
+
+  private checkUser() {
+    this.authService.loginStateEvent.subscribe((isLogin) => {
+      this.isAuthorized = isLogin
+    });
+    // this.authService.getAccountInfo().subscribe((data) => console.log(!!data));
   }
 
   private loadFavoriteIsNeeded(): void {

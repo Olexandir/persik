@@ -3,9 +3,10 @@
 
   <img src="assets/logo.png" alt="" class="header__logo" />
 
-  <ng-container *ngIf="isAuthorised; else notAuth">
+  <ng-container *ngIf="isAuthorized; else notAuth">
     <div class="header__account" routerLink="/account">
-      <mat-icon>account_circle</mat-icon>
+      Аккаунт
+      <!-- <mat-icon>account_circle</mat-icon> -->
     </div>
   </ng-container>
 

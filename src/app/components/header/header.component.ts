@@ -5,12 +5,13 @@ import {
   ChangeDetectorRef,
   OnDestroy,
   Output,
-  EventEmitter
+  EventEmitter,
+  Input
 } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { finalize, map, catchError } from 'rxjs/operators';
+import { finalize, map, catchError, filter } from 'rxjs/operators';
 
 import { AuthService } from '@services/core';
 import { LoadingFacade } from 'src/redux/loading/loading.facade';
@@ -25,10 +26,11 @@ import * as moment from 'moment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @Input() public isAuthorized: boolean;
+
   @Output() openModalChange = new EventEmitter<boolean>();
 
   public userInfo$: Observable<UserInfo>;
-  public isAuthorised: boolean;
 
   // private isModalOpen: boolean;
 
@@ -43,7 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     moment.locale('ru');
-    this.timer = setInterval(this.cdr.markForCheck, 60500);
+    // this.timer = setInterval(this.cdr.markForCheck, 60500);
     this.initUserInfo();
   }
 
@@ -64,10 +66,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private initUserInfo(): void {
     this.userInfo$ = this.authService.getAccountInfo().pipe(finalize(() => this.loadingFacade.stopLoading()));
-    this.authService.getAccountInfo().subscribe((data) => {
-      this.isAuthorised = !!data;
-      this.cdr.markForCheck();
-    });
+    // this.authService.getAccountInfo().subscribe((data) => {
+    //   console.log(data);
+    //   this.isAuthorised = !!data;
+    //   this.cdr.markForCheck();
+    // });
+
+    // this.userInfo$.pipe().subscribe((data) => {
+    //   if (data) {
+    //     console.log('true');
+    //   } else {
+    //     console.log('false');
+    //   }
+    // });
+
+    // .subscribe((userInfo) => {
+    //   this.isAuthorised = !!userInfo.user_id;
+    //   console.log(!!userInfo,  this.isAuthorised);
+
+    //   this.cdr.markForCheck();
+    // });
   }
 
   private get isHomePage(): boolean {
