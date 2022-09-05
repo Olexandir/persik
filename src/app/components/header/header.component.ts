@@ -42,8 +42,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // this.isModalOpen = true;
-    this.isAuthorised = false;
     moment.locale('ru');
     this.timer = setInterval(this.cdr.markForCheck, 60500);
     this.initUserInfo();
@@ -65,11 +63,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   private initUserInfo(): void {
-    // this.loadingFacade.startLoading();
     this.userInfo$ = this.authService.getAccountInfo().pipe(finalize(() => this.loadingFacade.stopLoading()));
     this.authService.getAccountInfo().subscribe((data) => {
       this.isAuthorised = !!data;
-      console.log(this.isAuthorised);
+      this.cdr.markForCheck();
     });
   }
 

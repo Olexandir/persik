@@ -8,7 +8,7 @@ import { LoadingFacade } from 'src/redux/loading/loading.facade';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html',
+  templateUrl: './auth_old.component.html',
   styleUrls: ['./auth.component.scss']
 })
 export class AuthPageComponent implements OnInit, OnDestroy {

@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   public getAccountInfo(): Observable<UserInfo> {
-    return this.http.get<UserInfo>(this.BASE_URL.concat('v1/account/info')).pipe(map((data) => data));
+    return this.http.get<UserInfo>(this.BASE_URL.concat('v1/account/info'));
   }
 
   public getUserSubscriptions(): Promise<UserSubscription[]> {

@@ -128,7 +128,8 @@ export class AppComponent implements OnInit {
   }
 
   private navigations(event): void {
-    event.preventDefault();
+    //! TODO it influents in typing
+    // event.preventDefault();
     const code = event.keyCode;
     if (code === KeyMap.BACK) {
       if (this.router.url.includes('home')) {
@@ -139,7 +140,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private androidBackHandler(event) {
+  private androidBackHandler(event): void {
     event.preventDefault();
     if (this.router.url.includes('home')) {
       this.isShowExitModal = !this.isShowExitModal;
