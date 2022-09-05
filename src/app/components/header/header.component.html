@@ -5,26 +5,15 @@
 
   <ng-container *ngIf="isAuthorised; else notAuth">
     <div class="header__account" routerLink="/account">
-      <i class="fa fa-user" aria-hidden="true"></i>
+      <mat-icon>account_circle</mat-icon>
     </div>
   </ng-container>
 
   <ng-template #notAuth>
     <div class="header__account" (click)="openAuthModal()">
       <!-- <span routerLink="/auth"</span> -->
-      <span>Log In</span>
+      <span>Войти</span>
     </div>
   </ng-template>
-
-  <!-- <ng-container *ngIf="!isAuthorised">
-    <div class="header__account" routerLink="/auth">
-      <i class="fa fa-user" aria-hidden="true"></i>
-      <i class="fa-solid fa-right-to-bracket"></i>
-      <i class="fa-solid fa-arrow-right-to-bracket"></i>
-      <i class="fa fa-sign-in" aria-hidden="true"></i>
-      Log In
-    </div>
-  </ng-container> -->
-
   <!-- <span class="header__time">{{ time }}</span> -->
 </div>

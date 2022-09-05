@@ -4,12 +4,12 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tv-review',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'tv-review',
-    loadChildren: () => import('./pages/tv-review/tv-review.module').then(m => m.TvReviewPageModule)
+    path: 'home',
+    loadChildren: () => import('./pages/tv-review/tv-review.module').then((m) => m.TvReviewPageModule)
   },
   // {
   //   path: 'home',
@@ -17,20 +17,20 @@ const routes: Routes = [
   // },
   {
     path: 'channel-player/:id',
-    loadChildren: () => import('./pages/channel-player/channel-player.module').then(m => m.ChannelPlayerPageModule)
+    loadChildren: () => import('./pages/channel-player/channel-player.module').then((m) => m.ChannelPlayerPageModule)
   },
   {
     path: 'video-player/:type/:id',
-    loadChildren: () => import('./pages/video-player/video-player.module').then(m => m.VideoPlayerPageModule)
+    loadChildren: () => import('./pages/video-player/video-player.module').then((m) => m.VideoPlayerPageModule)
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthPageModule)
+    loadChildren: () => import('./pages/auth/auth.module').then((m) => m.AuthPageModule)
   },
   {
     path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountPageModule)
-  },
+    loadChildren: () => import('./pages/account/account.module').then((m) => m.AccountPageModule)
+  }
   // {
   //   path: 'tv-guide',
   //   loadChildren: () => import('./pages/tv-guide/tv-guide.module').then(m => m.TvGuideModule)
@@ -73,12 +73,14 @@ const routes: Routes = [
   // }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled',
-    scrollPositionRestoration: 'enabled',
-    preloadingStrategy: PreloadAllModules,
-    relativeLinkResolution: 'legacy'
-})],
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabled',
+      scrollPositionRestoration: 'enabled',
+      preloadingStrategy: PreloadAllModules,
+      relativeLinkResolution: 'legacy'
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

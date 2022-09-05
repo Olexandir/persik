@@ -26,6 +26,6 @@ export class ChannelsTapeComponent implements OnInit {
 
   public onShowAll(): void {
     this.dataService.activeGenreId = 0;
-    this.router.navigate(['tv-review']);
+    this.router.navigate(['home']);
   }
 }
