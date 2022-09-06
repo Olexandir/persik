@@ -57,7 +57,6 @@ export class AppComponent implements OnInit {
     this.integrateGA();
     this.offNativeNavigation();
     this.isLoading$ = this.loadingFacade.isLoading$;
-    this.addCordovaScript();
     this.menuCtrl.menuController.subscribe((isShow) => (this.isShowMenu = isShow));
     this.channelsFacade.loadChannels();
     this.channelsFacade.loadChannelCategories();
@@ -81,7 +80,7 @@ export class AppComponent implements OnInit {
 
   private checkUser() {
     this.authService.loginStateEvent.subscribe((isLogin) => {
-      this.isAuthorized = isLogin
+      this.isAuthorized = isLogin;
     });
     // this.authService.getAccountInfo().subscribe((data) => console.log(!!data));
   }
@@ -121,14 +120,6 @@ export class AppComponent implements OnInit {
 
   public closeExitModal(): void {
     this.isShowExitModal = false;
-  }
-
-  private addCordovaScript(): void {
-    if (environment.platform === 'android') {
-      const script = document.createElement('script');
-      script.src = 'cordova.js';
-      document.head.appendChild(script);
-    }
   }
 
   private offNativeNavigation(): void {

@@ -6,6 +6,8 @@
   <ng-container *ngIf="isAuthorized; else notAuth">
     <div class="header__account" routerLink="/account">
       Аккаунт
+
+      <mat-icon>account_circle</mat-icon>
       <!-- <mat-icon>account_circle</mat-icon> -->
     </div>
   </ng-container>
@@ -14,6 +16,7 @@
     <div class="header__account" (click)="openAuthModal()">
       <!-- <span routerLink="/auth"</span> -->
       <span>Войти</span>
+      <mat-icon>meeting_room</mat-icon>
     </div>
   </ng-template>
   <!-- <span class="header__time">{{ time }}</span> -->
