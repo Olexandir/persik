@@ -1,5 +1,5 @@
 import { takeUntil } from 'rxjs/operators';
-import { Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { AuthUser } from '@models/core';
@@ -7,11 +7,13 @@ import { AuthService, DataService } from '@services/core';
 import { Subject } from 'rxjs';
 import { FavoritesFacade } from 'src/redux/favorite/favorite.facade';
 import { LoadingFacade } from 'src/redux/loading/loading.facade';
+import { emailValidator } from './validators/email-validator';
 
 @Component({
   selector: 'app-auth-modal',
   templateUrl: './auth-modal.component.html',
-  styleUrls: ['./auth-modal.component.scss']
+  styleUrls: ['./auth-modal.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AuthModalComponent {
   @Output() closeModalWindowChange = new EventEmitter<boolean>();
@@ -52,17 +54,23 @@ export class AuthModalComponent {
       email: [''],
       password: ['']
     });
-    const regex = /^([a-zA-Z0-9._%\+\-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$)/;
-    this.authForm.valueChanges.pipe(takeUntil(this.unsubscription)).subscribe((data) => {
-      if (regex.test(data.email)) {
-        // console.log(true);
-        this.authService.checkEmail(data.email).then((res) => {
-          if (res.exists) {
-            // console.log('email существует');
-          }
-        });
-      }
-    });
+
+    this.setValidatorsForLogIn();
+
+    // const regex = /^([a-zA-Z0-9._%\+\-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$)/;
+    // this.authForm.valueChanges.pipe(takeUntil(this.unsubscription)).subscribe((data) => {
+    //   if (regex.test(data.email)) {
+    //     this.authService.checkEmail(data.email).then((res) => {
+    //       if (res.exists) {
+    //       }
+    //     });
+    //   }
+    // });
+  }
+
+  private setValidatorsForLogIn(): void {
+    this.authForm.controls['email'].setValidators([Validators.required, emailValidator()]);
+    this.authForm.controls['password'].setValidators([Validators.required, Validators.minLength(6)]);
   }
 
   private authSuccess(result: AuthUser): void {

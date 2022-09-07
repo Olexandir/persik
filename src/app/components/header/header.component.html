@@ -1,11 +1,11 @@
 <div class="header">
   <!-- <span class="header__date">{{ date }}</span> -->
 
-  <img src="assets/logo.png" alt="" class="header__logo" />
+  <img src="assets/logo.png" alt="" class="header__logo" routerLink="home" />
 
-  <ng-container *ngIf="isAuthorized; else notAuth">
+  <ng-container *ngIf="isAuthorized$ | async; else notAuth">
     <div class="header__account" routerLink="/account">
-      Аккаунт
+      <!-- Аккаунт -->
 
       <mat-icon>account_circle</mat-icon>
       <!-- <mat-icon>account_circle</mat-icon> -->
@@ -15,7 +15,7 @@
   <ng-template #notAuth>
     <div class="header__account" (click)="openAuthModal()">
       <!-- <span routerLink="/auth"</span> -->
-      <span>Войти</span>
+      <!-- <span>Войти</span> -->
       <mat-icon>meeting_room</mat-icon>
     </div>
   </ng-template>

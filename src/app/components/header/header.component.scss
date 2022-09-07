@@ -6,8 +6,8 @@
   align-items: flex-end;
   box-sizing: border-box;
   padding: 0;
-  height: 45px;
-  margin-top: 40px;
+  height: 65px;
+  // margin-top: 40px;
   color: white;
   // padding-bottom: 6px;
   font-family: 'OpenSans-Bold', sans-serif;
@@ -20,11 +20,15 @@
   }
 
   &__account {
-    height: 45px;
+    height: fit-content;
     margin-top: 40px;
     color: white;
     padding: 0 40px;
     cursor: pointer;
+
+    mat-icon {
+      font-size: 40px;
+    }
   }
 
   &__auth {

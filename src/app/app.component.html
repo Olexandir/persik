@@ -1,7 +1,7 @@
 <div class="app-main-content" [class.blurred]="isAuthModalOpen">
   <!-- <app-connection-info></app-connection-info> -->
 
-  <app-header (openModalChange)="openModal()" [isAuthorized]="isAuthorized"></app-header>
+  <app-header (openModalChange)="openModal()"></app-header>
 
   <router-outlet></router-outlet>
 
@@ -19,6 +19,5 @@
 <ng-container *ngIf="isAuthModalOpen">
   <app-auth-modal
     (closeModalWindowChange)="closeModal()"
-    (isAuthorisedChange)="setUserrAuthorized($event)"
   ></app-auth-modal>
 </ng-container>

@@ -26,7 +26,9 @@ import * as moment from 'moment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @Input() public isAuthorized: boolean;
+  // @Input() public isAuthorized: boolean;
+
+  isAuthorized$: Observable<boolean>;
 
   @Output() openModalChange = new EventEmitter<boolean>();
 
@@ -44,6 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isAuthorized$ = this.authService.loginStateEvent
     moment.locale('ru');
     // this.timer = setInterval(this.cdr.markForCheck, 60500);
     this.initUserInfo();
@@ -66,26 +69,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private initUserInfo(): void {
     this.userInfo$ = this.authService.getAccountInfo().pipe(finalize(() => this.loadingFacade.stopLoading()));
-    // this.authService.getAccountInfo().subscribe((data) => {
-    //   console.log(data);
-    //   this.isAuthorised = !!data;
-    //   this.cdr.markForCheck();
-    // });
-
-    // this.userInfo$.pipe().subscribe((data) => {
-    //   if (data) {
-    //     console.log('true');
-    //   } else {
-    //     console.log('false');
-    //   }
-    // });
-
-    // .subscribe((userInfo) => {
-    //   this.isAuthorised = !!userInfo.user_id;
-    //   console.log(!!userInfo,  this.isAuthorised);
-
-    //   this.cdr.markForCheck();
-    // });
   }
 
   private get isHomePage(): boolean {
