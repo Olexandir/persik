@@ -1,6 +1,7 @@
 @import './colors.scss';
 @import './assets/fonts/fonts.css';
 @import '~material-icons/iconfont/material-icons.css';
+@import './material.scss';
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
@@ -15,10 +16,9 @@ body {
     display: none;
   }
 }
-*{
+* {
   box-sizing: border-box;
 }
-
 
 .page {
   // margin-left: 3.29rem;
@@ -30,7 +30,9 @@ body {
   position: relative;
   background: #1b1b1b;
 
-  &::-webkit-scrollbar { width: 0; }
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 
   &_fullscreen {
     width: 100vw;
@@ -52,8 +54,7 @@ body {
   }
 }
 
-
-.cdk-virtual-scroll-content-wrapper{
+.cdk-virtual-scroll-content-wrapper {
   right: 0;
   padding: 0 15px;
   margin-top: 30px;

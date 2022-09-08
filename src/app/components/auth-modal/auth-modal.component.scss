@@ -11,7 +11,7 @@
   &__back {
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.7);
     // background: rgba(255, 255, 255, 0.5);
   }
 
@@ -92,43 +92,4 @@
       }
     }
   }
-}
-
-.mat-form-field-appearance-standard {
-  width: 100%;
-
-  .mat-form-field-wrapper {
-    width: 100%;
-
-    .mat-form-field-underline {
-    }
-  }
-}
-
-.mat-form-field-flex {
-}
-
-.mat-input-element {
-  color: $main-hover !important;
-}
-
-.mat-form-field-label {
-  color: $main-hover;
-}
-
-.auth-form {
-  width: 100%;
-  height: fit-content;
-}
-
-.mat-form-field-appearance-standard .mat-form-field-underline {
-  background-color: $main-hover !important;
-}
-
-.mat-form-field-appearance-standard .mat-form-field-underline {
-  background: $main-hover !important;
-}
-
-input {
-background: none !important;
 }
