@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -36,9 +36,19 @@ export class ChannelCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.isLast && !this.isStub) {
-      this.cover = this.imageService.getChannelFrame(this.channel.channel_id, this.currentTime);
-      this.tvshow$ = this.getChannelTvshow();
+      this.resetChannelState();
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.channel && changes.channel.currentValue !== changes.channel.previousValue) {
+      this.resetChannelState();
+    }
+  }
+
+  private resetChannelState(): void {
+    this.cover = this.imageService.getChannelFrame(this.channel.channel_id, this.currentTime);
+    this.tvshow$ = this.getChannelTvshow();
   }
 
   public playChannel(): void {

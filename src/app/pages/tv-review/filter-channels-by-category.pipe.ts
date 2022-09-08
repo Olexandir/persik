@@ -11,7 +11,7 @@ export class FilterChannelsByCategoryPipe implements PipeTransform {
 
   private filter(channels: Channel[], categoryId: number): Channel[] {
     return channels.filter(({ genres }) => {
-      return genres.some((genreId) => genreId === categoryId);
+      return genres.includes(categoryId);
     });
   }
 }
