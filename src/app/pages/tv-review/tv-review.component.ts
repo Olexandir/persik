@@ -77,21 +77,21 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
   }
 
   private getChannels(): Observable<Channel[]> {
-    return this.channelsFacade.channels$.pipe(
-      takeUntil(this.destroy$),
-      map((channels) => {
-        const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
-        const slicedChannels = filteredChannels.slice(0, this.currentCount);
-        return slicedChannels;
-      })
-    );
-    // return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
-    //   map(([channels, isReload]) => {
+    // return this.channelsFacade.channels$.pipe(
+    //   takeUntil(this.destroy$),
+    //   map((channels) => {
     //     const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
     //     const slicedChannels = filteredChannels.slice(0, this.currentCount);
     //     return slicedChannels;
     //   })
     // );
+    return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
+      map(([channels, isReload]) => {
+        const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
+        const slicedChannels = filteredChannels.slice(0, this.currentCount);
+        return slicedChannels;
+      })
+    );
   }
 
   private filterChannelsByGenre(channels: Channel[], desiredGenre: Genre): Channel[] {
