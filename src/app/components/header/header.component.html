@@ -1,27 +1,23 @@
 <div class="header">
   <!-- <span class="header__date">{{ date }}</span> -->
 
-  <img src="assets/logo.png" alt="" class="header__logo" />
+  <img src="assets/logo.png" alt="" class="header__logo" routerLink="home" />
 
-  <ng-container *ngIf="isAuthorised; else notAuth">
+  <ng-container *ngIf="isAuthorized$ | async; else notAuth">
     <div class="header__account" routerLink="/account">
-      <i class="fa fa-user" aria-hidden="true"></i>
+      <!-- Аккаунт -->
+
+      <mat-icon>account_circle</mat-icon>
+      <!-- <mat-icon>account_circle</mat-icon> -->
     </div>
   </ng-container>
 
   <ng-template #notAuth>
-    <span routerLink="/auth">Log In</span>
-  </ng-template>
-
-  <!-- <ng-container *ngIf="!isAuthorised">
-    <div class="header__account" routerLink="/auth">
-      <i class="fa fa-user" aria-hidden="true"></i>
-      <i class="fa-solid fa-right-to-bracket"></i>
-      <i class="fa-solid fa-arrow-right-to-bracket"></i>
-      <i class="fa fa-sign-in" aria-hidden="true"></i>
-      Log In
+    <div class="header__account" (click)="openAuthModal()">
+      <!-- <span routerLink="/auth"</span> -->
+      <!-- <span>Войти</span> -->
+      <mat-icon>meeting_room</mat-icon>
     </div>
-  </ng-container> -->
-
+  </ng-template>
   <!-- <span class="header__time">{{ time }}</span> -->
 </div>

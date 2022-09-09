@@ -10,7 +10,7 @@ export class BackService {
 
   pathStatuses: PathStatus[] = [
     {
-      path: 'tv-review',
+      path: 'home',
       status: 0
     }
   ];
@@ -18,7 +18,7 @@ export class BackService {
   constructor(private router: Router) {}
 
   goToMain(): void {
-    this.router.navigate(['tv-review']);
+    this.router.navigate(['home']);
   }
 }
 

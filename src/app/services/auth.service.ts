@@ -1,4 +1,3 @@
-import { catchError, map } from 'rxjs/operators';
 import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -34,7 +33,7 @@ export class AuthService {
   }
 
   public getAccountInfo(): Observable<UserInfo> {
-    return this.http.get<UserInfo>(this.BASE_URL.concat('v1/account/info')).pipe(map((data) => data));
+    return this.http.get<UserInfo>(this.BASE_URL.concat('v1/account/info'));
   }
 
   public getUserSubscriptions(): Promise<UserSubscription[]> {

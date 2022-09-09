@@ -3,15 +3,20 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ImageService {
+  constructor() {}
 
-  constructor() { }
-
-  getChannelFrame(id: number, time: number, transform: string = 'crop', width: number = 500, height: number = 300): string {
+  getChannelFrame(
+    id: number,
+    time: number,
+    transform: string = 'crop',
+    width: number = 500,
+    height: number = 300
+  ): string {
     const t = Math.round(time);
     return `https://old.persik.by/utils/show-frame.php?c=${id}&t=${t}&tr=${transform}&w=${width}&h=${height}`;
   }
 
-  getChannelLogo(id: number) {
+  getChannelLogo(id: number): string {
     return `https://persik.by/media/channels/logos/${id}.png`;
   }
 
@@ -27,13 +32,13 @@ export class ImageService {
   //   return '';
   // }
 
-  getTvshowFrame(tvshow: Tvshow, transform = 'none', width = 0, height = 0) {
+  getTvshowFrame(tvshow: Tvshow, transform = 'none', width = 0, height = 0): string {
     const l = tvshow.stop - tvshow.start;
-    const time = tvshow.start + ((3 / 7) * l);
+    const time = tvshow.start + (3 / 7) * l;
     return this.getChannelFrame(tvshow.channel_id, time, transform, width, height);
   }
 
-  getVideoFrame(videoId: number, time: number, transform = 'none', width = 0, height = 0) {
+  getVideoFrame(videoId: number, time: number, transform = 'none', width = 0, height = 0): string {
     const t = Math.round(time / 60) * 60;
     return `https://persik.by/utils/show-frame-video.php?v=${videoId}&t=${t}&tr=${transform}&w=${width}&h=${height}`;
   }

@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
   public keycode: number;
   public isShowExitModal: boolean;
   public isLoading$: Observable<boolean>;
-
+  public isAuthorized: boolean;
+  public isAuthModalOpen: boolean;
   public code: number;
 
   constructor(
@@ -49,7 +50,6 @@ export class AppComponent implements OnInit {
     this.channelsFacade.loadChannelCategories();
     this.vodFacade.loadCategories();
     this.makeFontSize();
-
     this.loadFavoriteIsNeeded();
   }
 
@@ -63,6 +63,14 @@ export class AppComponent implements OnInit {
         }
       });
     }
+  }
+
+  public openModal(): void {
+    this.isAuthModalOpen = true;
+  }
+
+  public closeModal(): void {
+    this.isAuthModalOpen = false;
   }
 
   public closeExitModal(): void {
@@ -80,7 +88,8 @@ export class AppComponent implements OnInit {
   }
 
   private navigations(event): void {
-    event.preventDefault();
+    //! TODO it influents in typing
+    // event.preventDefault();
     const code = event.keyCode;
     if (code === KeyMap.BACK) {
       if (this.router.url.includes('tv-review')) {

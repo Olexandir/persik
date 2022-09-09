@@ -7,6 +7,7 @@
 /PersikApp-win32-ia32
 /PersikApp-win32-x64
 /PersikApp-win32-arm64
+/PersikApp-darwin-x64
 /release-builds
 
 # dependencies
