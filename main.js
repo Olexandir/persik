@@ -60,3 +60,16 @@ global.app.on('activate', function () {
     initWindow();
   }
 });
+
+global.app.on('browser-window-focus', function () {
+  global.globalShortcut.register('CommandOrControl+R', () => {
+    console.log('CommandOrControl+R is pressed: Shortcut Disabled');
+  });
+  global.globalShortcut.register('F5', () => {
+    console.log('F5 is pressed: Shortcut Disabled');
+  });
+});
+global.app.on('browser-window-blur', function () {
+  global.globalShortcut.unregister('CommandOrControl+R');
+  global.globalShortcut.unregister('F5');
+});
