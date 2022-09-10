@@ -14,8 +14,10 @@
   >
     <app-channel-card
       *ngFor="let item of channelList | async | filterChannelsByCategory: chosenCategory; trackBy: trackByChannelId"
+      [canOpenChannel]="isAuthorized"
       [currentTime]="currentTime"
       [channel]="item"
+      (openAuthModalChange)="openAuthModal($event)"
       class="item"
     ></app-channel-card>
   </div>

@@ -22,7 +22,7 @@
   text-align: center;
   font-size: 1.6rem;
 
-  &__name{
+  &__name {
     margin-bottom: 20px;
   }
 }
@@ -38,6 +38,7 @@
     display: inline-block;
     color: #fff;
     margin: 0 auto;
+    cursor: pointer;
 
     &:focus {
       background-color: $main-hover;

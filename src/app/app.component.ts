@@ -1,5 +1,5 @@
 import { VodFacade } from 'src/redux/vod/vod.facade';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -10,22 +10,26 @@ import { KeyMap } from '../keymaps/keymap';
 import { LoadingFacade } from './../redux/loading/loading.facade';
 import { FavoritesFacade } from 'src/redux/favorite/favorite.facade';
 import { ChannelsFacade } from 'src/redux/channels/channels.facade';
+import { OpenCloseAuthModalService } from './services/open-close-auth-modal.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
   public isShowMenu = true;
   public keycode: number;
   public isShowExitModal: boolean;
   public isLoading$: Observable<boolean>;
+  isAuthorized$: Observable<boolean>;
   public isAuthorized: boolean;
-  public isAuthModalOpen: boolean;
+  public isAuthModalOpen$: Observable<boolean>;
   public code: number;
 
   constructor(
+    private openCloseService: OpenCloseAuthModalService,
     private menuCtrl: MenuControlService,
     private backService: BackService,
     private router: Router,
@@ -33,7 +37,8 @@ export class AppComponent implements OnInit {
     private loadingFacade: LoadingFacade,
     private favoritesFacade: FavoritesFacade,
     private vodFacade: VodFacade,
-    private channelsFacade: ChannelsFacade
+    private channelsFacade: ChannelsFacade,
+    private cdr: ChangeDetectorRef
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -42,7 +47,7 @@ export class AppComponent implements OnInit {
     document.querySelector('html').style.fontSize = fontSize + 'px';
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.offNativeNavigation();
     this.isLoading$ = this.loadingFacade.isLoading$;
     this.menuCtrl.menuController.subscribe((isShow) => (this.isShowMenu = isShow));
@@ -51,6 +56,13 @@ export class AppComponent implements OnInit {
     this.vodFacade.loadCategories();
     this.makeFontSize();
     this.loadFavoriteIsNeeded();
+    this.authService.loginStateEvent.subscribe((isAuth) => (this.isAuthorized = isAuth));
+    this.authService.getAccountInfo().subscribe((user) => {
+      this.isAuthorized = !!user;
+      this.cdr.detectChanges();
+    });
+    this.isAuthModalOpen$ = this.openCloseService.isAuthModalOpen$;
+    // this.openCloseService.closeAuthModal()
   }
 
   private loadFavoriteIsNeeded(): void {
@@ -66,11 +78,13 @@ export class AppComponent implements OnInit {
   }
 
   public openModal(): void {
-    this.isAuthModalOpen = true;
+    // this.isAuthModalOpen = true;
+    this.openCloseService.openAuthModal();
   }
 
   public closeModal(): void {
-    this.isAuthModalOpen = false;
+    // this.isAuthModalOpen = false;
+    this.openCloseService.closeAuthModal();
   }
 
   public closeExitModal(): void {

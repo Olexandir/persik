@@ -39,6 +39,7 @@ import { appEffects, appReducers } from 'src/redux';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AuthModalComponent } from './components/auth-modal/auth-modal.component';
+import { OpenCloseAuthModalService } from './services/open-close-auth-modal.service';
 
 @NgModule({
   declarations: [AppComponent, AuthModalComponent, MainMenuComponent, ExitModalComponent, ConnectionInfoComponent],
@@ -76,7 +77,8 @@ import { AuthModalComponent } from './components/auth-modal/auth-modal.component
     },
     MenuControlService,
     BackService,
-    PositionMemoryService
+    PositionMemoryService,
+    OpenCloseAuthModalService
   ],
   bootstrap: [AppComponent]
 })

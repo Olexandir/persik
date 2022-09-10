@@ -1,11 +1,19 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
 import { BackService } from './../../services/back.service';
-import { TimeService } from '@services/core';
+import { AuthService, TimeService } from '@services/core';
 import { Genre, Channel } from '@models/core';
 import { STUB_GENRE } from '../../constants/stub-genre';
 import { ChannelsFacade } from 'src/redux/channels/channels.facade';
@@ -14,11 +22,16 @@ import { DEFAULT_COUNT, STEP } from './constants/channels-pagination';
 @Component({
   selector: 'app-tv-review',
   templateUrl: './tv-review.component.html',
-  styleUrls: ['./tv-review.component.scss']
+  styleUrls: ['./tv-review.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TvReviewPageComponent implements OnInit, OnDestroy {
+  @Output()
+  public openAuthModalChange = new EventEmitter<boolean>();
+
   public genres: Genre[] = [];
   public chosenCategory = 0;
+  public isAuthorized: boolean;
 
   public currentTime: number;
   public activeGenre: Genre;
@@ -30,16 +43,30 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
+    private authService: AuthService,
     private timeService: TimeService,
     private backService: BackService,
     private activatedRoute: ActivatedRoute,
-    private channelsFacade: ChannelsFacade
+    private channelsFacade: ChannelsFacade,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.startSubscriptions();
     this.channelList = this.getChannels();
     this.currentTime = this.timeService.currentTime;
+    this.authService.loginStateEvent.subscribe((isAuth) => {
+      this.isAuthorized = isAuth;
+      this.cdr.detectChanges();
+    });
+    this.authService.getAccountInfo().subscribe((user) => {
+      this.isAuthorized = !!user;
+      this.cdr.detectChanges();
+    });
+  }
+
+  public openAuthModal(event: boolean): void {
+    this.openAuthModalChange.emit(event);
   }
 
   public filterChannelsByCategory(categoryId: number): void {
@@ -77,21 +104,21 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
   }
 
   private getChannels(): Observable<Channel[]> {
-    return this.channelsFacade.channels$.pipe(
-      takeUntil(this.destroy$),
-      map((channels) => {
-        const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
-        const slicedChannels = filteredChannels.slice(0, this.currentCount);
-        return slicedChannels;
-      })
-    );
-    // return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
-    //   map(([channels, isReload]) => {
+    // return this.channelsFacade.channels$.pipe(
+    //   takeUntil(this.destroy$),
+    //   map((channels) => {
     //     const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
     //     const slicedChannels = filteredChannels.slice(0, this.currentCount);
     //     return slicedChannels;
     //   })
     // );
+    return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
+      map(([channels, isReload]) => {
+        const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
+        const slicedChannels = filteredChannels.slice(0, this.currentCount);
+        return slicedChannels;
+      })
+    );
   }
 
   private filterChannelsByGenre(channels: Channel[], desiredGenre: Genre): Channel[] {

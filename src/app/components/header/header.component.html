@@ -3,7 +3,7 @@
 
   <img src="assets/logo.png" alt="" class="header__logo" routerLink="home" />
 
-  <ng-container *ngIf="isAuthorized$ | async; else notAuth">
+  <ng-container *ngIf="isAuthorized; else notAuth">
     <div class="header__account" routerLink="/account">
       <!-- Аккаунт -->
 

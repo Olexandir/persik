@@ -21,7 +21,7 @@
   width: calc(100% - 14rem);
   height: 8rem;
   transition: .4s;
-  transform: translateY(0);
+  transform: translateY(-20px);
 
   &_hide {
     transform: translateY(100%);

@@ -11,13 +11,14 @@ import {
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { finalize, map, catchError, filter } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import { AuthService } from '@services/core';
 import { LoadingFacade } from 'src/redux/loading/loading.facade';
 import { UserInfo } from '@models/core';
 
 import * as moment from 'moment';
+import { OpenCloseAuthModalService } from 'src/app/services/open-close-auth-modal.service';
 
 @Component({
   selector: 'app-header',
@@ -26,15 +27,11 @@ import * as moment from 'moment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  // @Input() public isAuthorized: boolean;
-
-  isAuthorized$: Observable<boolean>;
+  @Input() isAuthorized: boolean;
 
   @Output() openModalChange = new EventEmitter<boolean>();
 
   public userInfo$: Observable<UserInfo>;
-
-  // private isModalOpen: boolean;
 
   private timer: any;
 
@@ -42,11 +39,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdr: ChangeDetectorRef,
     private authService: AuthService,
-    private loadingFacade: LoadingFacade
+    private loadingFacade: LoadingFacade,
+    private openCloseService: OpenCloseAuthModalService
   ) {}
 
   ngOnInit(): void {
-    this.isAuthorized$ = this.authService.loginStateEvent
+    // this.isAuthorized$ = this.authService.loginStateEvent
     moment.locale('ru');
     // this.timer = setInterval(this.cdr.markForCheck, 60500);
     this.initUserInfo();
@@ -64,7 +62,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openAuthModal(): void {
-    this.openModalChange.emit(true);
+    // this.openModalChange.emit(true);
+    this.openCloseService.openAuthModal();
   }
 
   private initUserInfo(): void {

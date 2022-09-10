@@ -1,3 +1,4 @@
+import { OpenCloseAuthModalService } from './../../services/open-close-auth-modal.service';
 import { takeUntil } from 'rxjs/operators';
 import { Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { Component } from '@angular/core';
@@ -24,6 +25,7 @@ export class AuthModalComponent {
   private unsubscription = new Subject<void>();
 
   constructor(
+    private openCloseService: OpenCloseAuthModalService,
     private fb: FormBuilder,
     private authService: AuthService,
     private dataService: DataService,
@@ -36,7 +38,8 @@ export class AuthModalComponent {
   }
 
   public closeModalWindow(): void {
-    this.closeModalWindowChange.emit(false);
+    this.openCloseService.closeAuthModal();
+    // this.closeModalWindowChange.emit(false);
   }
 
   public logIn(): void {
@@ -81,7 +84,7 @@ export class AuthModalComponent {
     this.favoritesFacade.loadFavoritesData();
     // this.backService.goToMain();
     this.loadingFacade.stopLoading();
-    this.closeModalWindowChange.emit(false);
+    this.closeModalWindow()
   }
 
   ngOnDestroy(): void {
