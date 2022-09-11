@@ -63,7 +63,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openAuthModal(): void {
-    // this.openModalChange.emit(true);
     this.openCloseService.openAuthModal();
   }
 

@@ -84,6 +84,10 @@ export class AppComponent implements OnInit {
     this.openCloseService.closeAuthModal();
   }
 
+  public openDialog(): void {
+    this.isShowExitModal = true;
+  }
+
   public closeExitModal(): void {
     this.isShowExitModal = false;
   }
