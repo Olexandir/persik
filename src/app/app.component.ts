@@ -62,7 +62,6 @@ export class AppComponent implements OnInit {
       this.cdr.detectChanges();
     });
     this.isAuthModalOpen$ = this.openCloseService.isAuthModalOpen$;
-    // this.openCloseService.closeAuthModal()
   }
 
   private loadFavoriteIsNeeded(): void {
@@ -78,12 +77,10 @@ export class AppComponent implements OnInit {
   }
 
   public openModal(): void {
-    // this.isAuthModalOpen = true;
     this.openCloseService.openAuthModal();
   }
 
   public closeModal(): void {
-    // this.isAuthModalOpen = false;
     this.openCloseService.closeAuthModal();
   }
 

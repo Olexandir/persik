@@ -1,11 +1,11 @@
 <div class="app-main-content" [class.blurred]="isAuthModalOpen$ | async">
   <!-- <app-connection-info></app-connection-info> -->
 
-  <app-header [isAuthorized]="isAuthorized"></app-header>
+  <app-header [isAuthorized]="isAuthorized" (confirmEvent)="closeApp()"></app-header>
 
   <router-outlet></router-outlet>
 
-  <app-exit-modal (cancelEvent)="closeExitModal()" (confirmEvent)="closeApp()" *ngIf="isShowExitModal"></app-exit-modal>
+  <!-- <app-exit-modal (cancelEvent)="closeExitModal()" (confirmEvent)="closeApp()" *ngIf="isShowExitModal"></app-exit-modal> -->
 
   <div class="loader" *ngIf="isLoading$ | async">
     <app-looping-rhombuses-spinner animationDuration="2500" rhombusSize="25" color="white">

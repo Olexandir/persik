@@ -26,10 +26,12 @@
     height: fit-content;
     margin-top: 40px;
     color: white;
-    padding: 0 40px;
+    padding: 0 15px;
     cursor: pointer;
 
     mat-icon {
+      width: fit-content;
+      height: fit-content;
       font-size: 40px;
     }
   }

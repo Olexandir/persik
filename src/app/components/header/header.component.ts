@@ -29,6 +29,7 @@ import { OpenCloseAuthModalService } from 'src/app/services/open-close-auth-moda
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() isAuthorized: boolean;
 
+  @Output() confirmEvent = new EventEmitter<void>();
   @Output() openModalChange = new EventEmitter<boolean>();
 
   public userInfo$: Observable<UserInfo>;
@@ -64,6 +65,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public openAuthModal(): void {
     // this.openModalChange.emit(true);
     this.openCloseService.openAuthModal();
+  }
+
+  public closeApp(): void {
+this.confirmEvent.next();
   }
 
   private initUserInfo(): void {
