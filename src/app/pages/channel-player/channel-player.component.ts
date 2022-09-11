@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,7 +16,8 @@ import { ChannelsFacade } from 'src/redux/channels/channels.facade';
 @Component({
   selector: 'app-channel-player',
   templateUrl: './channel-player.component.html',
-  styleUrls: ['./channel-player.component.scss']
+  styleUrls: ['./channel-player.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChannelPlayerComponent implements OnInit, OnDestroy {
   public isHideControls: boolean;
@@ -47,7 +48,8 @@ export class ChannelPlayerComponent implements OnInit, OnDestroy {
     private backService: BackService,
     private location: Location,
     private playerController: PlayerControllerService,
-    private channelsFacade: ChannelsFacade
+    private channelsFacade: ChannelsFacade,
+    private cd: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -140,7 +142,8 @@ export class ChannelPlayerComponent implements OnInit, OnDestroy {
     clearTimeout(this.autoHideTimer);
     this.autoHideTimer = setTimeout(() => {
       this.isHideControls = true;
-    }, 5000);
+      this.cd.markForCheck();
+    }, 4000);
   }
 
   public channelChange(id: number): void {
