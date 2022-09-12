@@ -30,11 +30,15 @@
     // border: 1px solid $main-hover;
     border-radius: 10px;
     padding: 10px;
-    gap: 15px;
+    gap: 30px;
     // background: rgba(255, 255, 255, 0.666);
     background: none;
 
     .close-row {
+      position: absolute;
+      transform: translate(25%, -175%);
+      right: 0;
+      top: 0;
       width: fit-content;
       height: fit-content;
       display: flex;
@@ -42,8 +46,8 @@
       justify-content: center;
       color: $main-hover;
       cursor: pointer;
-      position: relative;
-      margin-left: auto;
+      // position: relative;
+      // margin-left: auto;
 
       span {
         padding: 5px;
@@ -65,13 +69,20 @@
       color: white;
       text-align: center;
       font-weight: bold;
+      font-size: 28px;
+    }
+
+    .auth-form {
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      gap: 20px;
+      font-size: 20px;
     }
 
     .buttons-row {
       width: 100%;
       display: grid;
-      // grid-template-columns: repeat(2, 1fr);
-
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
 
       button {

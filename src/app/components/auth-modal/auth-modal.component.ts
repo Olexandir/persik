@@ -51,6 +51,14 @@ export class AuthModalComponent {
     });
   }
 
+  public register(): void {
+    const userLoginData = this.authForm.getRawValue();
+    const { email, password } = userLoginData;
+    this.authService.register(email, password).then((res) => {
+      this.authSuccess(res);
+    });
+  }
+
   private createAuthForm(): void {
     // что добавить ?
     this.authForm = this.fb.group({
@@ -84,7 +92,7 @@ export class AuthModalComponent {
     this.favoritesFacade.loadFavoritesData();
     // this.backService.goToMain();
     this.loadingFacade.stopLoading();
-    this.closeModalWindow()
+    this.closeModalWindow();
   }
 
   ngOnDestroy(): void {
