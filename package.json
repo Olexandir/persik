@@ -15,10 +15,11 @@
     "build": "ng build --configuration production",
     "electron": "ng build && electron .",
     "packager:win": "electron-packager . PersikApp --platform=win32 --arch=all",
-    "packager:win-release": "electron-packager . PersikApp --platform=win32 --arch=all --out=release-builds",
+    "packager:win-release": "ng build && electron-packager . PersikApp --platform=win32 --arch=all --out=release-builds",
     "packager:mac": "electron-packager . PersikApp --platform=darwin --arch=x64",
-    "packager:mac-release": "electron-packager . PersikApp --platform=darwin --arch=x64 --out=release-builds",
-    "watch": "nodemon -e ts -w ./src -x npm run electron"
+    "packager:mac-release": "ng build && electron-packager . PersikApp --platform=darwin --arch=x64 --out=release-builds",
+    "watch": "nodemon -e ts -w ./src -x npm run electron",
+    "build-all": "ng build && npm run packager:win-release && npm run packager:mac-release"
   },
   "private": true,
   "dependencies": {
