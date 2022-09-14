@@ -139,11 +139,11 @@ export class ChannelPlayerComponent implements OnInit, OnDestroy {
 
   public autoHideControls(): void {
     this.isHideControls = false;
-    clearTimeout(this.autoHideTimer);
-    this.autoHideTimer = setTimeout(() => {
-      this.isHideControls = true;
-      this.cd.markForCheck();
-    }, 4000);
+    // clearTimeout(this.autoHideTimer);
+    // this.autoHideTimer = setTimeout(() => {
+    //   this.isHideControls = true;
+    //   this.cd.markForCheck();
+    // }, 4000);
   }
 
   public channelChange(id: number): void {

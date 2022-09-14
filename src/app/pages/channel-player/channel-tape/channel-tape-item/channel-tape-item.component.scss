@@ -1,10 +1,12 @@
 @import '../../../../../colors.scss';
 
 .channel {
-  height: 5rem;
+  height: 6rem;
   margin-bottom: 1rem;
   cursor: pointer;
   user-select: none;
+  // padding: 2rem;
+  margin-left: 1rem;
 
   &__logo {
     display: block;
@@ -13,27 +15,31 @@
     transition: .3s;
     float: left;
     margin: 1rem;
-    height: 3rem;
-    width: 6rem;
+    height: 4rem;
+    width: 4rem;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+
   }
 
-  &__number {
-    float: left;
-    line-height: 5rem;
-    width: 3rem;
-    font-size: 1.5rem;
-    color: #ffffff;
-    padding: 0 2rem;
-    text-align: center;
-  }
+  // &__number {
+  //   float: left;
+  //   line-height: 5rem;
+  //   width: 3rem;
+  //   font-size: 1.5rem;
+  //   color: #ffffff;
+  //   padding: 0 2rem;
+  //   text-align: center;
+  // }
 
 
   &_focus {
-    background: linear-gradient(to right, rgba(255,255,255,.6), transparent);
-    filter: none;
+
+    border: 1px solid $main-hover;
+    border-radius: 8px;
+    // background: linear-gradient(to right, rgba(255,255,255,.6), transparent);
+    // filter: none;
 
     .channel__logo{
       opacity: 1;
@@ -43,9 +49,11 @@
   }
 
   &_active {
-    background: linear-gradient(to right, $main-hover, transparent);
-    border: none;
-    filter: none;
+    border: 1px solid $main-hover;
+    border-radius: 8px;
+    // background: linear-gradient(to right, $main-hover, transparent);
+    // border: none;
+    // filter: none;
 
     .channel__logo{
       opacity: 1;
@@ -54,8 +62,8 @@
     }
   }
 
-  &::after {
-    content: '';
-    padding-bottom: 100%;
-  }
+  // &::after {
+  //   content: '';
+  //   padding-bottom: 100%;
+  // }
 }

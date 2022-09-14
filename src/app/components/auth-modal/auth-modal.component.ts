@@ -42,7 +42,7 @@ export class AuthModalComponent {
     // this.closeModalWindowChange.emit(false);
   }
 
-  public logIn(): void {
+  public logIn(userLogData?: { email: string; password: string }): void {
     // что добавить ?
     const userLoginData = this.authForm.getRawValue();
     const { email, password } = userLoginData;
@@ -54,9 +54,13 @@ export class AuthModalComponent {
   public register(): void {
     const userLoginData = this.authForm.getRawValue();
     const { email, password } = userLoginData;
-    this.authService.register(email, password).then((res) => {
-      this.authSuccess(res);
-    });
+    this.authService
+      .register(email, password)
+      .then((res) => {
+        this.authSuccess(res);
+      })
+      .then(() => this.logIn({ email, password }))
+      .catch((e) => console.log(e));
   }
 
   private createAuthForm(): void {
