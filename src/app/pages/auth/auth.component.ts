@@ -155,13 +155,13 @@ export class AuthPageComponent implements OnInit, OnDestroy {
   }
 
   private register(): void {
-    this.loadingFacade.startLoading();
-    this.authService
-      .register(this.email, this.password)
-      .then((_) => {
-        this.login();
-      })
-      .finally(() => this.loadingFacade.stopLoading());
+    // this.loadingFacade.startLoading();
+    // this.authService
+    //   .register(this.email, this.password)
+    //   .then((_) => {
+    //     this.login();
+    //   })
+    //   .finally(() => this.loadingFacade.stopLoading());
   }
 
   private authSuccess(result: AuthUser) {

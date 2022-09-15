@@ -21,9 +21,9 @@ export class AuthService {
     return this.http.post<AuthUser>(this.BASE_URL.concat('v1/account/login'), {}, { params }).toPromise();
   }
 
-  public register(email: string, password: string): Promise<any> {
+  public register(email: string, password: string): Observable<AuthUser> {
     const params: HttpParams = new HttpParams().set('email', email).set('password', password);
-    return this.http.post<AuthUser>(this.BASE_URL.concat('v1/account/registration'), {}, { params }).toPromise();
+    return this.http.post<AuthUser>(this.BASE_URL.concat('v1/account/registration'), {}, { params });
   }
 
   public logout(): void {

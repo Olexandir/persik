@@ -54,13 +54,16 @@ export class AuthModalComponent {
   public register(): void {
     const userLoginData = this.authForm.getRawValue();
     const { email, password } = userLoginData;
-    this.authService
-      .register(email, password)
-      .then((res) => {
-        this.authSuccess(res);
-      })
-      .then(() => this.logIn({ email, password }))
-      .catch((e) => console.log(e));
+    this.authService.register(email, password).subscribe({
+      next: (i) => console.log(i),
+      error: (e) => console.log(e),
+      complete: () => this.logIn({ email, password })
+    });
+    // .then((res) => {
+    //   this.authSuccess(res);
+    // })
+    // .then(() => this.logIn({ email, password }))
+    // .catch((e) => console.log(e));
   }
 
   private createAuthForm(): void {
