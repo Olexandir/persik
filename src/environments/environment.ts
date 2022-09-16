@@ -4,7 +4,8 @@
 
 export const environment = {
   production: true,
-  platform: 'android'
+  // platform: 'android'
+  platform: 'web-by'
 };
 
 /*

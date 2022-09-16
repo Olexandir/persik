@@ -322,7 +322,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
   private playUrl(url: string) {
     this.isPlayerHaveError = false;
     const parseUrl = this.parseStreamUrl(url);
-    if (environment.platform === 'android' || environment.platform === 'web') {
+    if (environment.platform === 'android' || environment.platform === 'web-by') {
       if (Hls.isSupported()) {
         this.playWithHls(parseUrl);
       } else {
