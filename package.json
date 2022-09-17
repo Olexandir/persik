@@ -39,11 +39,11 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build --configuration production",
-    "electron": "ng build && electron .",
+    "electron": "npm run build && electron .",
     "packager:win": "electron-packager . PersikApp --platform=win32 --arch=all",
     "packager:win-release": "npm run build && electron-packager . PersikApp --platform=win32 --arch=x64 --out=release-builds --no-prune --overwrite",
     "packager:mac": "electron-packager . PersikApp --platform=darwin --arch=x64",
-    "packager:mac-release": "ng build && electron-packager . PersikApp --platform=darwin --arch=x64 --out=release-builds",
+    "packager:mac-release": "npm run build && electron-packager . PersikApp --platform=darwin --arch=x64 --out=release-builds",
     "watch": "nodemon -e ts -w ./src -x npm run electron",
     "build-all": "ng build && npm run packager:win-release && npm run packager:mac-release"
   },
