@@ -3,7 +3,7 @@
     [chosenCategory]="chosenCategory"
     (chosenCategoryChange)="filterChannelsByCategory($event)"
   ></app-channels-categories-container>
-  <div
+  <!-- <div
     class="channel-viewport"
     *ngIf="isShowPreloadArea"
     infiniteScroll
@@ -11,9 +11,10 @@
     [infiniteScrollThrottle]="200"
     [scrollWindow]="false"
     (scrolled)="loadMoreChannels()"
-  >
+  > -->
+  <div class="channel-viewport">
     <app-channel-card
-      *ngFor="let item of channelList | async | filterChannelsByCategory: chosenCategory; trackBy: trackByChannelId"
+      *ngFor="let item of channelList | async | filterChannelsByCategoryPipe: chosenCategory; trackBy: trackByChannelId"
       [canOpenChannel]="isAuthorized"
       [currentTime]="currentTime"
       [channel]="item"
@@ -21,4 +22,6 @@
       class="item"
     ></app-channel-card>
   </div>
+
+  <!-- </div> -->
 </div>

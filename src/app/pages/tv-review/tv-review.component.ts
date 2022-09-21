@@ -71,7 +71,7 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
 
   public filterChannelsByCategory(categoryId: number): void {
     this.chosenCategory = categoryId;
-    if (categoryId === 0) return;
+    // if (categoryId === 0) return;
   }
 
   public loadMoreChannels(): void {
@@ -114,9 +114,9 @@ export class TvReviewPageComponent implements OnInit, OnDestroy {
     // );
     return combineLatest([this.channelsFacade.channels$, this.channelsLoader$]).pipe(
       map(([channels, isReload]) => {
-        const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
-        const slicedChannels = filteredChannels.slice(0, this.currentCount);
-        return slicedChannels;
+        // const filteredChannels = this.filterChannelsByGenre(channels, this.activeGenre);
+        // const slicedChannels = filteredChannels.slice(0, this.currentCount);
+        return channels;
       })
     );
   }
